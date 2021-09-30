@@ -44,5 +44,10 @@ class Circle {
 }
 
 /*
-Please keep in mind this is code may be in accordance to some textbook work!!
+Please keep in mind this is code may be in accordance to some textbook work!
+
+NullPointerException is when an app attempts to use null value in a case where
+object is needed
+
+An anonymous object is an object w no reference
  */

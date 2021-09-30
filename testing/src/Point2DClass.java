@@ -1,5 +1,6 @@
 /*
 With x and y-coordinates, you can create an object for this class
+Trying to test something out here
  */
 
 import java.awt.geom.Point2D;

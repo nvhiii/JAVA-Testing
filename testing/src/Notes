@@ -40,5 +40,31 @@ setter e.g.
     public void setPropertyName(dataType propertyValue)
 
 
+Array of Objects
 
+Syntax:
+    Circle[] circleArray = new Circle[10];
+
+    // this stmnt declares and creates an array of 10 circle objects
+   to initialize, you can use a for loop
+
+   for (int i = 0; i < circleArray.length; i++) {
+    circleArray[i] = new Circle();
+
+*when array of objects created using new operator, each element in array is
+ref variable with default value null
+
+**printf is print formatting**
+    - can check formatting documentation whilst using printf, useful for formatting
+
+Immutable Objects & Classes
+    - occassionally it is desirable to create an object whose contents cannot be changed once object is created
+        - "immutable" class & object
+    - if class is immutable, all data fields must be private w/ no public setter methods
+
+Variable Scope
+
+This key-word to reference data fields
+
+   }
  */

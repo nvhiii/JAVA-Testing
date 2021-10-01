@@ -25,3 +25,15 @@ public class TestCircleWithStaticMembers {
                 c2.numberOfObjects + ")"); // static variable
     }
 }
+
+/*
+Instance method - needs an object of class to be created before getting called
+                + need to create object for this, thus often has no args
+
+Static methods - can just be called without creation of object
+                + cannot create object for this method type !!!
+                + usually has args!!
+                + also has the keyword STATIC
+
+Instance data fields - often are just data type followed by var = value !!
+ */

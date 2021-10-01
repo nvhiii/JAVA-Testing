@@ -1,0 +1,44 @@
+/*
+Instance method - needs an object of class to be created before getting called
+                + need to create object for this, thus often has no args
+
+Static methods - can just be called without creation of object
+                + cannot create object for this method type !!!
+                + usually has args!!
+                + also has the keyword STATIC
+
+Instance data fields - often are just data type followed by var = value !!
+
+Public modifiers, private modifiers, protected modifiers & Packages
+
+Packages - are called using
+           [ package "PackageName"; ]
+
+           If class is defined w/o package stmnt, it is in default package
+
+Public modifiers - Allows for access of member from inside and outside pkg
+
+Private modifiers - Allows for access of data fields in own class
+
+Protected modifiers - Allows for access of member in its own package
+
+If you want users to be prohibited from creating in a certain class,
+make the constructor private! (usually should be public)
+
+Data Field Encapsulation - to prevent direct modifications of data fields,
+declare data fields private using the private modifier!!
+
+Often, you need to retrieve and modify data fields, this is accomplished
+with private by using a getter method.
+
+e.g.
+    public returnType getPropertyName(); // accessor
+
+    public boolean isPropertyName(); // e.g. of a boolean accessor
+
+setter e.g.
+    public void setPropertyName(dataType propertyValue)
+
+
+
+ */

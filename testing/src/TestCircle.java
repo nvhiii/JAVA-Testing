@@ -40,6 +40,10 @@ class Circle {
         radius = newRadius;
     }
 
+    public double getRadius() { // accessor method
+        return radius;
+    }
+
 
 }
 

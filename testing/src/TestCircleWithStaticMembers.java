@@ -14,7 +14,7 @@ public class TestCircleWithStaticMembers {
 
         CircleWithStatic c2 = new CircleWithStatic(5);
 
-        c1.radius = 0; // instance variable
+        c1.radius = 9; // instance variable
 
         System.out.println("\nAfter creating c2 and modifying c1");
         System.out.println("c1: radius (" + c1.radius +

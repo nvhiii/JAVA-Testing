@@ -9,7 +9,7 @@ public class CircleWithStatic {
         numberOfObjects++;
     }
 
-    CircleWithStatic(double newRadius) { // constructor
+    CircleWithStatic(double newRadius) { // constructor w/ arg
         radius = newRadius;
         numberOfObjects++;
     }

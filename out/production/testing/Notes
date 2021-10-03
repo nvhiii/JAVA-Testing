@@ -66,5 +66,28 @@ Variable Scope
 
 This key-word to reference data fields
 
+Thinking in Objects
+
+Class Relationships
+
+Association
+    - relations implemented using data fields
+    **different classes access another class which they share in common**
+
+Aggregation
+    - may exist between objects of same class
+
+    e.g.
+    public class Person {
+
+    private Person supervisor;
+
+    }
+
+
+    }
+
+
+
    }
  */

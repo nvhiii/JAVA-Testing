@@ -34,7 +34,7 @@ public class Loan {
     }
 
     public double getLoanAmount() { // accessor
-        return getLoanAmount();
+        return loanAmount();
     }
 
     public void setLoanAmount(double loanAmount) {  // mutator / setter

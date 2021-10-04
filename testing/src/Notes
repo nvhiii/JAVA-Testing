@@ -89,7 +89,55 @@ Aggregation
 
 Designing Class for Courses - 10/2
 
-Designing Class for Stacks
+Designing Class for Stacks - 10/3 --> 10/4
 
-   }
+public keyword - declare's member's access as public
+
+static keyword - used to share same var or method of given class (mostly for memory management)
+
+void keyword - denotes that a method does not have a return type
+
+API - application programming interface (offering service to other software)
+
+Processing Primitive Data Type Values as Objects
+
+    - primitive data type values are not objects
+    (wrapping data type into object)
+    e.g.
+        - int to Integer
+        - double to Double
+        - char to Character
+Using these wrapper classes, you can process primitive data types as objects
+    e.g. of Wrapper classes in java.lang package
+    - Boolean
+    - Character
+    - Double
+    - Float
+    - Byte
+    - Short
+    - Integer
+    - Long
+
+Each of these numeric wrapper classes contain a method to "convert" objects into primitive types"
+    e.g.
+    doubleValue(), floatValue(), intValue(), longValue(), shortValue(), byteValue()
+
+Can construct wrapper object from primitive data type or from string
+    e.g.
+    new Double(5.0) = new Double("5.0")
+
+Instances of wrapper classes are immutable, meaning once the objects are created, their values cannot be changed
+
+Each numeric wrapper class has MAX_VALUE(Byte, Short, Integer, and Long)
+Each numeric wrapper class has MIN_VALUE
+    **MIN_VALUE shows minimum from byte, short, int, and long
+    **MIN_value shows minimum POSITIVE float and double
+
+Each numeric wrapper class contains doubleValue(), floatValue(), intValue(), longValue(), and shortValue()
+    - returns double, float, int, long, or short
+
+
+
+
+    }
  */

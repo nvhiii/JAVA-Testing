@@ -136,8 +136,41 @@ Each numeric wrapper class has MIN_VALUE
 Each numeric wrapper class contains doubleValue(), floatValue(), intValue(), longValue(), and shortValue()
     - returns double, float, int, long, or short
 
+    Syntax:
+
+    new Double(12.4).intValue() // returns 12
+    new Integer(12).doubleValue() // returns 12.0
+
+Numeric wrapper class also contains compareTo method which returns 1, 0, or -1
+Based off if the number is greater than, equal to, or less than the other number
+
+e.g.
+new Double(12.4).compareTo(new Double(12.3)); // returns 1
 
 
+static valueOf methods
+    - this method creates a new object initialized to the value represented by the specified string
 
-    }
+    e.g.
+    Double doubleObject = Double.valueOf(12.4);
+
+static parsing methods
+    - Each numeric wrapper class hass two overloaded parsing methods to parse a numeric string
+      into an appropriate numeric value based on 10 or any radix (2 for binary, 8 for octal, 16 for hexadecimal)
+
+    e.g.
+    public static parseInt (String s)
+    public static int parseInt (String s, int radix)
+
+    Integer.parseInt("11, 2"); // returns 3 because of binary
+
+    ** You can also convert a decimal number into hex number using format method
+
+    e.g.
+
+    String.format("%x", 26); // returns 1A
+
+Automatic Conversion Between Primitive Types and Wrapper Class Types
+
+
  */

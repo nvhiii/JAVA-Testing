@@ -1,11 +1,20 @@
 public class ParkingMeter {
     
     private int timeLeft = 0;
-    
+    private int maxTime;
+
+    public ParkingMeter(int maxTime) {
+        this.maxTime = maxTime;
+    }
+
     public boolean add(int x) {
         if (x == 25) {
-            timeLeft += 30;
-            return true;
+            if (!(timeLeft + 30 > maxTime)) {
+                timeLeft += 30;
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

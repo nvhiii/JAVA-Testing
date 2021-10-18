@@ -4,11 +4,11 @@ public class Clock {
     private boolean isTicking;
     private Integer diff;
 
-    public Clock(int hours, boolean isTicking, int diff) {
+    public Clock(Clock c) {
 
-        this.hours = hours;
-        this.isTicking = isTicking;
-        this.diff = diff;
+        this.hours = c.hours;
+        this.isTicking = c.isTicking;
+        this.diff = c.diff;
 
     }
 }

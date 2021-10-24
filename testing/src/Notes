@@ -4,8 +4,16 @@ Instance method - needs an object of class to be created before getting called
 
 Static methods - can just be called without creation of object
                 + cannot create object for this method type !!!
-                + usually has args!!
+                + usually has args!! (doesn't always have to have args)
                 + also has the keyword STATIC
+
+Static variables - are often shared by the entire class, and are initialized in value
+
+Instance variables - tied to specific instance of class, not shared with objects in same class
+
+primitive types - are literal values
+
+reference types - are references to objects, etc.
 
 Instance data fields - often are just data type followed by var = value !!
 
@@ -73,9 +81,21 @@ Class Relationships
 Association
     - relations implemented using data fields
     **different classes access another class which they share in common**
+    -
 
 Aggregation
     - may exist between objects of same class
+    - represents ownership relationship between two objects'
+    - models a "has-a" relationship
+
+    - the OWNER object is called an aggregating object and its class is called an aggregating class
+    - the SUBJECT object is called an aggregated object, and its class is called an aggregated class
+    - this is called composition if the existence of the aggregated object is dependent on the aggregating object
+    - it implies one object exclusive ownership
+    - a filled black diamond attached to aggregating class represents composition
+
+    - an unfilled white diamond attached to aggregating class represents aggregation
+
 
     e.g.
     public class Person {
@@ -171,6 +191,8 @@ static parsing methods
     String.format("%x", 26); // returns 1A
 
 Automatic Conversion Between Primitive Types and Wrapper Class Types
+
+
 
 
  */

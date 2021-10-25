@@ -190,7 +190,44 @@ static parsing methods
 
     String.format("%x", 26); // returns 1A
 
-Automatic Conversion Between Primitive Types and Wrapper Class Types
+10.8) Automatic Conversion Between Primitive Types and Wrapper Class Types
+
+- converting a primitive value to a wrapper object is called boxing
+- the reverse process is called unboxing
+
+e.g.:
+    Integer intObject = new Integer(2); (is equal to)
+    Integer intObject = 2;
+
+    **this is due to autoboxing**
+
+    int i = 1; (is equal to)
+    Integer i = new Integer(1);
+
+    **this is due to autounboxing
+
+
+10.9) The BigInteger and BigDecimal Classes
+
+- can be used to represent integers or decimal numbers of any size and precision
+**contained in the java.math package is immutable
+
+- BigInteger can represent an integer of any size
+- Also can create instances of these both using BigInteger(String) or BigDecimal(String)
+
+- used with the methods of add, subtract, multiply, divide, and remainder
+
+- divide method may throw ArithmeticException if result cannot be terminated
+** use overloaded **
+    divide(BigDecimal d, int scale, int roundingMode)
+
+    e.g.:
+    divide(b, 20, BigDecimal.ROUND_UP)
+
+relevant code:
+LargeFactorial.java
+
+10.10) The String Class
 
 
 

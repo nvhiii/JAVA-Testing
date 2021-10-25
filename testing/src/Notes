@@ -229,6 +229,119 @@ LargeFactorial.java
 
 10.10) The String Class
 
+- String objects are immutable, it cannot be changed once it is created
+    methods:
+        - charAt(index)
+        - length()
+        - substring
+        - indexOf
+        - lastIndexOf
+        - equals
+        - compareTo
+        - trim()
+        - toLowerCase()
+        - toUpperCase()
+
+Constructing a String
+
+syntax:
+    String newString = new String(stringLiteral);
+
+**You can also create a string from array of characters**
+
+e.g.
+    char[] charArray = {'G', 'o', 'o', 'd', ' ', 'D', 'a', 'y'};
+    String message = new String(charArray);
+
+Immutable Strings and Interned Strings
+
+- because strings are immutable, JVM uses unique instance of string literals to improve efficiency and save memory (interned string)
+- therefore, even if two string objects have same contents, they are not necessarily equal
+
+e.g.
+    String s1 = "Welcome to Java";
+    String s2 = new String("Welcome to Java");
+    String s3 = "Welcome to Java";
+
+    s1 != s2
+    but,
+    s1 == s3
+
+Replacing and Splitting Strings
+    Methods:
+    - replace
+        syntax:
+        "Welcome".replace("e", "AB") returns a new string, WABlcomAB.
+
+    - replaceFirst
+        syntax:
+        "Welcome".replaceFirst("e", "AB") returns a new string, WABlcome.
+
+    - replaceAll
+        syntax:
+        String s = "a+b$#c".replaceAll("[$+#]", "NNN");
+        System.out.println(s);
+
+        regex[$+#] specifies chars to replace: $, +, and #
+        thus this prints out aNNNbNNNNNNc
+
+    ** these all return a new string derived from original string without altering the og string
+
+    - split
+    ** used to extract tokens from string with specified delimiter(s)
+        syntax:
+        String[] tokens = "Java#HTML#Perl".split("#");
+
+        for (int i = 0; i < tokens.length; i++)
+            System.out.print(tokens[i] + " ");
+
+        displays Java HTML Perl
+
+Matching, Replacing, and Splitting by Patterns
+
+- often there will be a need to write code that validates user input
+    ** a regular expression, or REGEX is a string that describes a pattern for matching a set of strings
+
+    Method(s):
+    - matches
+    ** matches fixed strings and set of strings that follow a pattern
+
+        syntax:
+        "Java".equals("Java");
+
+        "Java is powerful".matches("Java.*")
+
+        ** Java.* is a regex which describes a string pattern that begins with Java followed by any zero of more characters
+        or
+
+        "440–02–4534".matches("\\d{3}–\\d{2}–\\d{4}")
+
+        ** \\d represents a single digit, \\d{#} represents # digits
+        or
+
+        String[] tokens = "Java,C?C#,C++".split("[.,:;?]");
+
+        for (int i = 0; i < tokens.length; i++)
+            System.out.println(tokens[i]);
+
+        ** this [.,:;?] specifies a pattern that matches any of the char inside the square brackets, and thus splits the string
+
+Conversion between Strings and Arrays
+
+- strings can be converted into an array and vice versa
+
+- for strings to array of char, use toCharArray method
+
+    syntax:
+    char[] chars = "Java".toCharArray();
+
+    char[0] is J
+    char[1] is a
+    char[2] is v
+    char[3] is a
+
+- can also use getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)
+    ** to copy substring of string from index srcBegin to index srcEnd-1 into array dst starting from index dstBegin
 
 
 

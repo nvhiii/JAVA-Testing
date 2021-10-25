@@ -22,5 +22,9 @@ public class Student {
         return name.equals(other.name);
     }
 
+    public Name getName() {
+        return name;
+    }
+
 
 }

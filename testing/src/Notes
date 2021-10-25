@@ -344,5 +344,101 @@ Conversion between Strings and Arrays
     ** to copy substring of string from index srcBegin to index srcEnd-1 into array dst starting from index dstBegin
 
 
+// **add end of chapter 10 and ch 11 here
 
+Chapter 12) Exception Handling and Text I/O
+
+12.1) Introduction
+
+- Exceptions are runtime errors
+- Exception handling enables a program to deal with runtime errors and continue its normal execution
+    e.g.
+    https://www.geeksforgeeks.org/types-of-exception-in-java-with-examples/     // these are built in exceptions (There is a hierarchy of exceptions / NOT A LIST // class notes & slides)
+    - ArrayIndexOutOfBounds
+    - InputMismatchException, etc.
+
+
+12.2) Exception-handling Overview
+
+- program method should never terminate the program, should be up to user
+- Java enables a method to throw an exception that be caught and handled by the caller
+
+    syntax:
+    public ...
+        if (conditional)
+            throw new EXCEPTION("output to caller") // exception is an object thrown (specified exeception is dataType in java API)
+
+    public static void main(String [] args) {
+
+        stmnts...;
+
+        try {
+            stmnts / methods...
+        } catch (EXCEPTION catchBlockParameter) {   // catch-block header // catch-block param is usually ex
+            code to process exception...
+            // usually a print statement
+        }
+
+        stmnts...
+    }
+
+- the execution of a throw stmnt is called throwing an exception
+    ** exception is an object created from an exception class
+- when an exception is thrown, normal execution is interrupted
+- "throw an exception" passes an exception from one place to another
+    ** the stmnt to invoke the method is in a "try" block
+
+- the try block contains code that is executed in normal circumstances
+
+- the exception is caught by the catch block
+
+- the catch block is executed to handle the exception
+
+** advanage of using exception handling
+    - it enables a method to throw an exception to its caller, enabling the caller to handle the exception
+
+- often, methods called do not know what to do in case of an error
+    **this is typically the case for library methods
+    ** key benefit is separating the detection of error (in called method) from the handling of error (in calling method)
+
+**runtime exceptions don't have to be declared, thus every other exception must be included after the called method param as well as in method body in the called method**
+
+12.3) Exception Types
+
+- the root class for exceptions is java.lang.Throwable
+
+** The class names Error, Exception, and RuntimeException are all exceptions and all of the errors occur at runtime
+
+- you can create own exception classes by extending Eception or a subclass of Exception
+
+- exception classes can be classified into 3 major types:
+    1. System errors - thrown by JVM and are represented in the Error class
+        ** Error class describes internal system errors
+    
+    2. Exceptions - represented by Exception class, which describes errors caused by your program and by external circumstances
+        ** these errors can be caught and handled by your program
+
+    3. Runtime Exceptions - 
+
+
+
+
+
+
+
+
+
+Relevant Code:
+12.1 - Quotient.java
+12.2 - QuotientWithIf.java
+12.3 - QuotientWithMethod.java
+12.4 - QuotientWithException.java
+12.5 - InputMismatchExceptionDemo.java
+
+
+
+    
+
+
+// **add chapter 13 here
  */

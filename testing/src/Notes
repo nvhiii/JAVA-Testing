@@ -119,7 +119,7 @@ void keyword - denotes that a method does not have a return type
 
 API - application programming interface (offering service to other software)
 
-Processing Primitive Data Type Values as Objects
+10.7) Processing Primitive Data Type Values as Objects
 
     - primitive data type values are not objects
     (wrapping data type into object)
@@ -224,10 +224,10 @@ e.g.:
     e.g.:
     divide(b, 20, BigDecimal.ROUND_UP)
 
-relevant code:
+Relevant code:
 LargeFactorial.java
 
-10.10) The String Class
+10.10: The String Class
 
 - String objects are immutable, it cannot be changed once it is created
     methods:
@@ -242,7 +242,7 @@ LargeFactorial.java
         - toLowerCase()
         - toUpperCase()
 
-Constructing a String
+10.10.1 - Constructing a String
 
 syntax:
     String newString = new String(stringLiteral);
@@ -253,7 +253,7 @@ e.g.
     char[] charArray = {'G', 'o', 'o', 'd', ' ', 'D', 'a', 'y'};
     String message = new String(charArray);
 
-Immutable Strings and Interned Strings
+10.10.2 - Immutable Strings and Interned Strings
 
 - because strings are immutable, JVM uses unique instance of string literals to improve efficiency and save memory (interned string)
 - therefore, even if two string objects have same contents, they are not necessarily equal
@@ -267,7 +267,7 @@ e.g.
     but,
     s1 == s3
 
-Replacing and Splitting Strings
+10.10.3 - Replacing and Splitting Strings
     Methods:
     - replace
         syntax:
@@ -297,7 +297,7 @@ Replacing and Splitting Strings
 
         displays Java HTML Perl
 
-Matching, Replacing, and Splitting by Patterns
+10.10.4 - Matching, Replacing, and Splitting by Patterns
 
 - often there will be a need to write code that validates user input
     ** a regular expression, or REGEX is a string that describes a pattern for matching a set of strings
@@ -326,7 +326,7 @@ Matching, Replacing, and Splitting by Patterns
 
         ** this [.,:;?] specifies a pattern that matches any of the char inside the square brackets, and thus splits the string
 
-Conversion between Strings and Arrays
+10.10.5 - Conversion between Strings and Arrays
 
 - strings can be converted into an array and vice versa
 
@@ -343,6 +343,107 @@ Conversion between Strings and Arrays
 - can also use getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)
     ** to copy substring of string from index srcBegin to index srcEnd-1 into array dst starting from index dstBegin
 
+10.10.6 - Converting Characters and Numeric Values to Strings
+
+- convert numbers into strings using overloaded static valueOf method
+
+    syntax:
+    String.valueOf(data);
+
+10.10.7 - Formatting Strings
+
+- String class contains format method to return formatted string
+
+    syntax:
+    String.format(format, item1, item2, ..., itemn);
+
+10.11: The StringBuilder and StringBuffer Classes
+
+- these are mutable and can be used where a string is used
+- can add, insert, or append new contents into their objects
+
+- methods for modifying the buffer in StringBuffer are synchronized
+    ** only one task allowed to execute the methods
+
+- use StringBuffer if class might be accessed by multiple taks (concurrent programming)
+
+- use StringBuilder if class is accessed by single task (no synchronization)
+    ** Has three constructors and more than 30 methods to manage the builder and modify the strings in the builder
+
+    syntax:
+    StringBuilder(); // empty string builder constructed with capacity of 16
+
+    StringBuilder(capacity: int); // string builder constructed with capacity of specified int
+
+    StringBuilder(s: String);   // string builder constructed with specified string
+
+10.11.1 - Modifying Strings in the StringBuilder
+
+- there are many methods in the stringbuilder class to append, insert, delete, and replace a specified position in string builder
+
+    Method(s)
+    +append(data: char[]): StringBuilder    // appends a char array into string builder
+
+    +append(data: char[], oset: int, len: int):
+    StringBuilder                           // appends a subarray in data into this string builder
+
+    +append(v: aPrimitiveType): StringBuilder   // appends a primitive-type value as a string to this builder
+
+    +append(s: String): StringBuilder           // appends a string to this string builder
+
+    +delete(startIndex: int, endIndex: int):
+    StringBuilder                               // Deletes characters from startIndex to endIndex-1
+
+    +deleteCharAt(index: int): StringBuilder    // deletes a character at a specified index
+
+    +insert(index: int, data: char[], oset: int,
+    len: int): StringBuilder                    // inserts a subarray of the data in the array into the builder at the specified index
+
+    +insert(oset: int, data: char[]):
+    StringBuilder                               // Inserts data into this builder at the position offset.
+
+    +insert(oset: int, b: aPrimitiveType):
+    StringBuilder                               // Inserts a value converted to a string into this builder.
+
+    +insert(oset: int, s: String): StringBuilder   // Inserts a string into this builder at the position offset
+
+    +replace(startIndex: int, endIndex: int, s:
+    String): StringBuilder                      // Replaces the characters in this builder from startIndex
+                                                   to endIndex – 1 with the specied string
+
+    +reverse(): StringBuilder                   // Reverses the characters in the builder
+
+    +setCharAt(index: int, ch: char): void      // Sets a new character at the specied index in this
+                                                   builder
+
+    ** if a string does not need to be changed, use String not StringBuilder **
+
+10.11.2 - The toString, capacity, length, setLength, and charAt Methods
+
+- There are also methods to manipulate string builders and obtain their properties
+
+    Method(s)
+    +toString(): String // Returns a string object from the string builder.
+
+    +capacity(): int    // Returns the capacity of this string builder.
+
+    +charAt(index: int): char   // Returns the character at the specied index.
+
+    +length(): int  // Returns the number of characters in this builder.
+
+    +setLength(newLength: int): void    // Sets a new length in this builder.
+
+    +substring(startIndex: int): String // Returns a substring starting at startIndex.
+
+    +substring(startIndex: int, endIndex: int): // Returns a substring from startIndex to endIndex – 1.
+        String
+
+    +trimToSize(): void // Reduces the storage size used for the string builder.
+
+10.11.3 - Case Study: Ignoring Nonalphanumeric Characters When Checking Palindromes
+
+Relevant code:
+PalindromeIgnoreNonAlphanumeric.java
 
 // **add end of chapter 10 and ch 11 here
 

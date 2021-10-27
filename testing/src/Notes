@@ -506,6 +506,9 @@ Chapter 12) Exception Handling and Text I/O
 
 Relevant code:
 Quotient.java
+QuotientWithIf.java
+QuotientWithMethod.java
+QuotientWithException.java
 
 12.3: Exception Types
 
@@ -524,6 +527,22 @@ Quotient.java
 
     3. Runtime Exceptions - represented in RuntimeException class - which describes programming errors
 
+** if its possible to rethrow an exception, it throws it to antoher method **
+    e.g.
+
+    for example, if the exception is in method1 and another method, method2 calls it and it throws exception right after its param, and if said method2 is called in another method, the exception travels up the stack
+        ** must have checked exceptions (the middle method(s) throws exception)
+
+    stack diagram is a very good way to trace exception rethrows** also in main, the "throw exception" is optional
+
+    runtime exceptions don't have to be declared as usual
+
+    Method(s)
+
+    printStackTrace()
+
+
+
 
 
 
@@ -536,9 +555,6 @@ Quotient.java
 
 Relevant Code:
 
-12.2 - QuotientWithIf.java
-12.3 - QuotientWithMethod.java
-12.4 - QuotientWithException.java
 12.5 - InputMismatchExceptionDemo.java
 
 

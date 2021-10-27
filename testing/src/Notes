@@ -536,11 +536,22 @@ QuotientWithException.java
     stack diagram is a very good way to trace exception rethrows** also in main, the "throw exception" is optional
 
     runtime exceptions don't have to be declared as usual
+        ** runtime exceptions are unchecked exceptions
 
     Method(s)
 
     printStackTrace()
 
+
+3 Pillars of OOP (Object Oriented Programming)
+
+1. Data hiding in ENCAPSULATION
+
+2. Inheritance -  your class and other class, your class gets something from the other class (child class gets from the parent class etc.)
+    ** Each class has exactly one parent, something exclusive to JAVA
+    ** this is a "IS A" relationship vs composition
+
+3. Polymorphism
 
 
 

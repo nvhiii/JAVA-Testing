@@ -449,7 +449,7 @@ PalindromeIgnoreNonAlphanumeric.java
 
 Chapter 12) Exception Handling and Text I/O
 
-12.1) Introduction
+12.1: Introduction
 
 - Exceptions are runtime errors
 - Exception handling enables a program to deal with runtime errors and continue its normal execution
@@ -459,7 +459,7 @@ Chapter 12) Exception Handling and Text I/O
     - InputMismatchException, etc.
 
 
-12.2) Exception-handling Overview
+12.2: Exception-handling Overview
 
 - program method should never terminate the program, should be up to user
 - Java enables a method to throw an exception that be caught and handled by the caller
@@ -504,7 +504,10 @@ Chapter 12) Exception Handling and Text I/O
 
 **runtime exceptions don't have to be declared, thus every other exception must be included after the called method param as well as in method body in the called method**
 
-12.3) Exception Types
+Relevant code:
+Quotient.java
+
+12.3: Exception Types
 
 - the root class for exceptions is java.lang.Throwable
 
@@ -519,7 +522,9 @@ Chapter 12) Exception Handling and Text I/O
     2. Exceptions - represented by Exception class, which describes errors caused by your program and by external circumstances
         ** these errors can be caught and handled by your program
 
-    3. Runtime Exceptions - 
+    3. Runtime Exceptions - represented in RuntimeException class - which describes programming errors
+
+
 
 
 
@@ -530,7 +535,7 @@ Chapter 12) Exception Handling and Text I/O
 
 
 Relevant Code:
-12.1 - Quotient.java
+
 12.2 - QuotientWithIf.java
 12.3 - QuotientWithMethod.java
 12.4 - QuotientWithException.java

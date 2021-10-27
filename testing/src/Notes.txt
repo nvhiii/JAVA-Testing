@@ -1,4 +1,22 @@
 /*
+Key:
+- Chapters end with ")" character
+- Chapter sections end with ":" character
+- Chapter subsections end with "-" character
+- Relevant code provided at end of each section / subsection
+
+Chapter 9) Objects and Classes
+
+9.1: Introduction
+
+9.2: Defining Classes for Objects
+
+9.3: Defining Classes and Creating Objects
+
+9.4: Constructing Objects Using Constructors
+
+9.5: Accessing Objects via Reference Variables
+
 Instance method - needs an object of class to be created before getting called
                 + need to create object for this, thus often has no args
 
@@ -7,13 +25,19 @@ Static methods - can just be called without creation of object
                 + usually has args!! (doesn't always have to have args)
                 + also has the keyword STATIC
 
+9.5.4 - Differences between Variables of Primitive Types and Reference Types
+
+    primitive types - are literal values
+
+    reference types - are references to objects, etc.
+
+9.6: Using Classes from the Java Library
+
+9.7: Static Variables, Constants, and Methods
+
 Static variables - are often shared by the entire class, and are initialized in value
 
 Instance variables - tied to specific instance of class, not shared with objects in same class
-
-primitive types - are literal values
-
-reference types - are references to objects, etc.
 
 Instance data fields - often are just data type followed by var = value !!
 
@@ -24,11 +48,15 @@ Packages - are called using
 
            If class is defined w/o package stmnt, it is in default package
 
+9.8: Visibility Modifiers
+
 Public modifiers - Allows for access of member from inside and outside pkg
 
 Private modifiers - Allows for access of data fields in own class
 
 Protected modifiers - Allows for access of member in its own package
+
+9.9: Data Field Encapsulation
 
 If you want users to be prohibited from creating in a certain class,
 make the constructor private! (usually should be public)
@@ -47,8 +75,10 @@ e.g.
 setter e.g.
     public void setPropertyName(dataType propertyValue)
 
+9.10: Passing Objects to Methods
 
-Array of Objects
+
+9.11: Array of Objects
 
 Syntax:
     Circle[] circleArray = new Circle[10];
@@ -65,18 +95,28 @@ ref variable with default value null
 **printf is print formatting**
     - can check formatting documentation whilst using printf, useful for formatting
 
-Immutable Objects & Classes
+9.12: Immutable Objects & Classes
     - occassionally it is desirable to create an object whose contents cannot be changed once object is created
         - "immutable" class & object
     - if class is immutable, all data fields must be private w/ no public setter methods
 
-Variable Scope
+9.13: Variable Scope
 
-This key-word to reference data fields
+9.14: This key-word to reference data fields
 
-Thinking in Objects
+9.14.1 - Using this to Reference Data Fields
 
-Class Relationships
+9.14.2 - Using this to Invoke a Constructor
+
+Chapter 10) Object-Oriented Thinking
+
+10.1: Introduction
+
+10.2: Class Abstraction and Encapsulation
+
+10.3: Thinking in Objects
+
+10.4: Class Relationships
 
 Association
     - relations implemented using data fields
@@ -107,9 +147,14 @@ Aggregation
 
     }
 
-Designing Class for Courses - 10/2
+10.5: Case Study: Designing the Course Class
 
-Designing Class for Stacks - 10/3 --> 10/4
+10.6: Case Study: Designing Class for Stacks
+
+Relevant code:
+
+TestStackOfIntegers.java
+StackOfIntegers.java
 
 public keyword - declare's member's access as public
 
@@ -119,7 +164,7 @@ void keyword - denotes that a method does not have a return type
 
 API - application programming interface (offering service to other software)
 
-10.7) Processing Primitive Data Type Values as Objects
+10.7: Processing Primitive Data Type Values as Objects
 
     - primitive data type values are not objects
     (wrapping data type into object)
@@ -190,7 +235,7 @@ static parsing methods
 
     String.format("%x", 26); // returns 1A
 
-10.8) Automatic Conversion Between Primitive Types and Wrapper Class Types
+10.8: Automatic Conversion Between Primitive Types and Wrapper Class Types
 
 - converting a primitive value to a wrapper object is called boxing
 - the reverse process is called unboxing
@@ -207,7 +252,7 @@ e.g.:
     **this is due to autounboxing
 
 
-10.9) The BigInteger and BigDecimal Classes
+10.9: The BigInteger and BigDecimal Classes
 
 - can be used to represent integers or decimal numbers of any size and precision
 **contained in the java.math package is immutable
@@ -445,7 +490,8 @@ e.g.
 Relevant code:
 PalindromeIgnoreNonAlphanumeric.java
 
-// **add end of chapter 10 and ch 11 here
+-------------------------------------------------------------------------------------------------------
+// **add ch 11 here
 
 Chapter 12) Exception Handling and Text I/O
 
@@ -549,7 +595,7 @@ QuotientWithException.java
 
 2. Inheritance -  your class and other class, your class gets something from the other class (child class gets from the parent class etc.)
     ** Each class has exactly one parent, something exclusive to JAVA
-    ** this is a "IS A" relationship vs composition
+    ** this is a "IS A" relationship unike composition & aggregation, which are "HAS A" relationships
 
 3. Polymorphism
 

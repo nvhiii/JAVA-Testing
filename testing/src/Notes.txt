@@ -635,6 +635,71 @@ Relevant code:
 CircleWithException.java
 TestCircleWithException.java
 
+
+12.5: The finally Clause
+
+12.6: When to Use Exceptions
+
+12.7: Rethrowing Exceptions
+
+12.8: Chained Exceptions
+
+Relevant code:
+ChainedExceptionDemo.java
+
+12.9: Defining Custom Exception Classes
+
+Relevant code:
+InvalidRadiusException.java
+TestCircleWithCustomException.java
+
+12.10: The File Class
+
+    Method(s):
+
+
+Relevant code:
+TestFileClass.java
+
+12.11: File Input and Output
+
+12.11.1 - Writing Data Using PrintWriter
+
+    Method(s):
+
+Relevant code:
+WriteData.java
+
+12.11.2 - Closing Resources Automatically Using try-with-resources
+
+Relevant code:
+WriteDataWithAutoClose.java
+
+12.11.3 - Reading Data Using Scanner
+
+    Method(s):
+
+
+Relevant code:
+ReadData.java
+
+12.11.4 - How Does Scanner Work?
+
+12.11.5 - Case Study: Replacing Text
+
+Relevant code:
+ReplaceText.java
+
+12.12: Reading Data from the Web
+
+Relevant code:
+readFileFromURL.java
+
+12.13: Case Study: Web Crawler
+
+Relevant code:
+WebCrawler.java
+
 3 Pillars of OOP (Object Oriented Programming)
 
 1. Data hiding in ENCAPSULATION

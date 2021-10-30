@@ -5,6 +5,11 @@ Key:
 - Chapter subsections end with "-" character
 - Relevant code provided at end of each section / subsection
 
+https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/ExampleByChapters.html
+
+^^ all liang src tb code is in the link above, I just collected them into this src file
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 9) Objects and Classes
 
 9.1: Introduction
@@ -108,6 +113,7 @@ ref variable with default value null
 
 9.14.2 - Using this to Invoke a Constructor
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 10) Object-Oriented Thinking
 
 10.1: Introduction
@@ -275,7 +281,7 @@ LargeFactorial.java
 10.10: The String Class
 
 - String objects are immutable, it cannot be changed once it is created
-    methods:
+    Method(s):
         - charAt(index)
         - length()
         - substring
@@ -340,7 +346,7 @@ e.g.
         for (int i = 0; i < tokens.length; i++)
             System.out.print(tokens[i] + " ");
 
-        displays Java HTML Perl
+        displays Java HTML Perl because # is the delimiter and the for loop iterates the array tokens, adding a space in between each word
 
 10.10.4 - Matching, Replacing, and Splitting by Patterns
 
@@ -387,6 +393,7 @@ e.g.
 
 - can also use getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)
     ** to copy substring of string from index srcBegin to index srcEnd-1 into array dst starting from index dstBegin
+    ** gets char from another string from firstNum (inclusive) to nextNum specified, specified array, then adds into specified index
 
 10.10.6 - Converting Characters and Numeric Values to Strings
 
@@ -401,6 +408,31 @@ e.g.
 
     syntax:
     String.format(format, item1, item2, ..., itemn);
+
+    Reference to formatting:
+    https://stackabuse.com/how-to-format-a-string-in-java-with-examples/
+
+    Format specifiers:
+    %c - Character
+    %d - Decimal number (base 10)
+    %e - Exponential floating-point number
+    %f - Floating-point number
+    %i - Integer (base 10)
+    %o - Octal number (base 8)
+    %s - String
+    %u - Unsigned decimal (integer) number
+    %x - Hexadecimal number (base 16)
+    %t - Date/time
+    %n - Newline
+
+    Formatting cmds:
+    \b - Insert backspace
+    \f - Next line's first character starts to the right of current line's last character
+    \n - Insert newline
+    \r - Insert carriage return
+    \t - Insert tab
+    \\ - Insert backslash
+    %% - Insert percentage sign
 
 10.11: The StringBuilder and StringBuffer Classes
 
@@ -488,11 +520,64 @@ e.g.
 10.11.3 - Case Study: Ignoring Nonalphanumeric Characters When Checking Palindromes
 
 Relevant code:
-PalindromeIgnoreNonAlphanumeric.java
+PalindromeIgnoreNonAlphanumeric.java // gotta do this in the src
 
--------------------------------------------------------------------------------------------------------
-// **add ch 11 here
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Chapter 11) Inheritance and Polymorhpism
 
+11.1: Introduction
+
+Inheritance - the ability to define new classes from existing classes
+    ** powerful feature for reusing software
+
+11.2: Superclasses and Subclasses
+
+- Inheritance enables the definition of a general class (superclass) and extend to a subclass
+
+subclass - a class extended from another class
+    ** child class / extended class / derived class
+    ** inherts all accessible data fields and methods from superclass and may add data fields and methods
+
+superclass - class that another class that extends from
+    ** parent class / base class
+
+subtype - type defined by a subclass
+
+is-a relationship - subclass "is-a" part of superclass
+
+** once again, private data fields in a class cannot be accessed from another class
+** therefore, subclasses cannot access private data fields in their corresponding superclass
+
+Key Takeaways Regarding Inheritance:
+
+- Subclass is NOT a subset of superclass, instead it has more info and methods than the superclass
+
+- Private data fields in superclass not accessible outside the class, therefore cannot be used directly in subclass
+    ** they can be accessed/modified through public accessors/mutators ONLY IF defined in the SUPERCLASS
+
+- Not all is-a relationships should be modeled using inheritance b/c not all subclasses has a is-a relationship w/ others under the same superclass
+
+- Don't extend a class unless the classes have an "is-a" relationship
+
+- Java does not have multiple inheritance, thus you CANNOT derive subclass from several classes
+    ** This is called single inheritance, where a subclass can ONLY have one parent
+
+11.3: Using the super Keyword
+
+
+
+
+
+Relevant code:
+SimpleGeometricObject.java
+CircleFromSimpleGeometricObject.java
+RectangleFromSimpleGeometricObject.java
+TestCircleRectangle.java
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 12) Exception Handling and Text I/O
 
 12.1: Introduction

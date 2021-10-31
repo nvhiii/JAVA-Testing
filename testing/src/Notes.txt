@@ -759,7 +759,13 @@ DynamicBindingDemo.java
     Object o = new Student();
     m(o);
 
-    // implicit Casting
+    // implicit Casting ^^
+
+
+    Student b = (Student)O
+
+    // explicit casting ^^
+
 
 
 

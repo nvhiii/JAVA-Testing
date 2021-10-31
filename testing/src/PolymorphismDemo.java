@@ -3,10 +3,8 @@ public class PolymorphismDemo {
     public static void main(String[] args) {
       // Display circle and rectangle properties
 
-      displayObject(new CircleFromSimpleGeometricObject
-          (1, "red", false));
-      displayObject(new RectangleFromSimpleGeometricObject
-          (1, 1, "black", true));
+      displayObject(new CircleFromSimpleGeometricObject(1, "red", false)); // polymorphic call of this methods which is inherited
+      displayObject(new RectangleFromSimpleGeometricObject(1, 1, "black", true));
           
     }
   

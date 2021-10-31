@@ -652,6 +652,122 @@ TestCircleRectangle.java
 
 11.5: Overriding vs. Overloading
 
+- overriding is to provide a new implementation for a method in the subclass
+    ** if there is a subclass of a superclass with same method signature as the method in the superclass, the subclass method would override the method in the superclass
+
+- overloading is to define multiple methods w/ the same name but diff signatures
+    ** same method name except for params, therefore is overloading
+
+∵
+- overridden methods are in diff classes by inheritance (super / subclass)
+
+- overloaded methods can be either in same class of diff classes by inheritance
+
+- overridden methods have same signature
+
+- overloaded methods have same name but diff param
+
+    syntax:
+
+    public class Circle extends GeometricObject {
+
+        @Override
+        public String toString0 {
+            return super.toString() + "\n" + "radius is " + radius;
+        }
+    }
+
+    ** the @Override is called override annotation, which is oft3en placed before the overriding method
+        Using this annotation, mistakes can be avoided
+
+11.6: The Object Class and Its toString() Method
+
+- Every class in Java is descended from the java.lang.Object class
+
+    syntax:
+    public String toString()
+
+- invoking toString() on object returns a string that describes the object
+
+Common Issue with toString() Method:
+
+    e.g.
+    Loan loan = new Loan();
+    System.out.println(loan.toString());
+
+    // this displays Loan@15037e5 (binary bs)
+
+** To avoid this issue, override the toString method in the Object class
+
+11.7: Polymorphism
+
+- means that a var of supertype can refer to subtype object
+
+There are 3 Pillars of OOP (Object Oriented Programming)
+
+1. Data hiding in ENCAPSULATION
+
+2. Inheritance -  your class and other class, your class gets something from the other class (child class gets from the parent class etc.)
+    ** inherits attributes and methods from another class
+    ** Each class has exactly one parent, something exclusive to JAVA
+    ** this is a "IS A" relationship unike composition & aggregation, which are "HAS A" relationships
+    ** instance variable - created when object created
+
+3. Polymorphism
+    ** an object of a subclass can be used wherever its superclass object is used
+    ** Uses methods attained from inheritance to perform other tasks
+
+
+Relevant code:
+PolymorphismDemo.java // review this code
+
+** This topic is sort-of confusing as well, check back later
+
+11.8: Dynamic Binding:
+
+- a method can be implemented in several classes in inheritance chain. JVM decides which is invoked
+
+- when compiler cannot compile call/binding at compile time
+
+Which method: overloaded / overridden method is invoked first?
+
+- a variable must be declared a type
+
+declared type - type that declares a var is called vars declared type
+    
+    type - variables and expressions all have this; e.g. int, double, etc.
+
+    ** var of reference type can hold null or reference to instance of declared type
+        ** insance may be created using the constructor of declared type or subtype
+
+
+actual type - the actual class for object referenced by var
+
+- the method that invokes an object is determined by the object's actual type // known as dynamic binding
+
+Relevant code:
+DynamicBindingDemo.java
+
+11.9: Casting Objects and the instanceof operator
+
+- object refernece can be typecast into another object reference
+
+    e.g.
+
+    m(new Student()) (is equals to)
+
+    Object o = new Student();
+    m(o);
+
+    // implicit Casting
+
+
+
+
+
+
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 12) Exception Handling and Text I/O
@@ -860,26 +976,6 @@ readFileFromURL.java
 
 Relevant code:
 WebCrawler.java
-
-3 Pillars of OOP (Object Oriented Programming)
-
-1. Data hiding in ENCAPSULATION
-
-2. Inheritance -  your class and other class, your class gets something from the other class (child class gets from the parent class etc.)
-    ** Each class has exactly one parent, something exclusive to JAVA
-    ** this is a "IS A" relationship unike composition & aggregation, which are "HAS A" relationships
-
-3. Polymorphism
-
-
-
-
-
-
-
-
-
-
 
 
 Relevant code:

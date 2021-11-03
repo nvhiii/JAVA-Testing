@@ -16,21 +16,24 @@ Instructions for cloning and pulling repo (per update):
 
 3. You will then see a line similar to this:
   
-  C:\ Users\ "User">
-              ^ This will be the name of the username you are logged in under
+>> C:\ Users\ "User">
+>>
+                ^ "User" will be the name of the username you are logged in under
             
 4. After getting the above prompt on your command prompt, please change directory to Desktop, as that is where the JAVA-Testing file will be saved by default!
   ** You can achieve this by entering the following after ">" sign
   
-  cd Desktop
+ >> cd Desktop
   
-  result: C:\Users\Nahi\Desktop>
+  
+ >> result: C:\Users\Nahi\Desktop>
   
 5. If you followed all steps, including the mandatory prerequisite, you should have git installed on your pc. Therefore, now you can simply enter the following the the command prompt:
 
-git clone [insert HTTPS clone link from step 1 here]
+>> git clone [insert HTTPS clone link from step 1 here]
+
   
-  ** (please remove the "[" and "]" from your command prompt entry)
+>> ** (please remove the "[" and "]" from your command prompt entry)
   
   
 6. When all is said and done, the command prompt should take a few seconds to a minute to clone the repo in your Desktop, so you can access all the notes and code from this repo!

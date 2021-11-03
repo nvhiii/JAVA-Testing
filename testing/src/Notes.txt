@@ -502,6 +502,9 @@ e.g.
     Method(s)
     +toString(): String // Returns a string object from the string builder.
 
+    // the toString method when used on a object returns by default ObjectClass@hexadecimal of object hashcode if an overloaded toString is not created
+    // this is due to the toString method in the Object class
+
     +capacity(): int    // Returns the capacity of this string builder.
 
     +charAt(index: int): char   // Returns the character at the specied index.
@@ -630,7 +633,7 @@ TestCircleRectangle.java
 11.3.3 - Calling Superclass Methods
 
 - keyword super can be used to reference method other than constructor in superclass
-
+    ** (parents call their parents, can never call constructor using super.super THIS IS WRONG)
     syntax:
 
     super.method(args);
@@ -640,12 +643,18 @@ TestCircleRectangle.java
 
 - to override a method, the method must be defined in the subclass using same signature as its superclass
 
+- we override with the @Override above the method
+
+- we only override because there is ambiguity in regards to the parents class method and the child class method have a same method signature
+
 - Overriding method must have same signature as overridden method and same/compatible return type
     ** signature is part of method declaration, it is the method name + params
 
 - Instance method can be overridden only if it is accessible
     ** private method cannot be overridden
 
+- if a a method is overridden, it cannot be called
+8
 - Static method can also be inherited but cannot be overridden
 
 // This topic is sort-of confusing, will revisit this in more depth later**
@@ -695,7 +704,7 @@ Common Issue with toString() Method:
     Loan loan = new Loan();
     System.out.println(loan.toString());
 
-    // this displays Loan@15037e5 (binary bs)
+    // this displays Loan@15037e5 (binary bs) <- object class + @ + hexadecimal of object
 
 ** To avoid this issue, override the toString method in the Object class
 
@@ -713,10 +722,36 @@ There are 3 Pillars of OOP (Object Oriented Programming)
     ** this is a "IS A" relationship unike composition & aggregation, which are "HAS A" relationships
     ** instance variable - created when object created
 
+    notes:
+    ** yes, you can call methods of parent class, but only the public methods
+    ** constructor of the parent is called in the 1st stmnt of constructor / if no call to super, compilar puts it in for you
+    ** if a subclass is created w/o a superclass but now it has the said parent class, it has additional fields
+    ** subclass does inherit private data fields of super class (in regards to the object created)
+
 3. Polymorphism
     ** an object of a subclass can be used wherever its superclass object is used
     ** Uses methods attained from inheritance to perform other tasks
 
+    e.g. Shape myShape = new Rectangle();
+        ** as long as subtype class "IS A" object supertype (this is stored in a supertype var) **
+
+        superclass var = subclass object();
+
+    concept is that even though it is restricted by types, must have reference of same type 
+        ** (only methods you could call are things of type of the reference),
+
+
+    Using array of objects to find out if they are siblings
+
+    How to tell if two objects are siblings: assigned an object of subclass to a superclass reference var
+        ** Use an array of objects to find out if they are siblings
+
+        e.g. 
+
+        for (Shape shp : listOfShapes) {    // enhanced for-loop
+
+            System.out.println("color: " + shp.getColor());
+        }
 
 Relevant code:
 PolymorphismDemo.java // review this code
@@ -762,7 +797,7 @@ DynamicBindingDemo.java
     // implicit Casting ^^
 
 
-    Student b = (Student)O
+    Student b = (Student)
 
     // explicit casting ^^
 
@@ -992,6 +1027,9 @@ Relevant code:
 
     
 
-
 // **add chapter 13 here
+
+PHONEBOOK2 USES COMPOSITION **
+
+What is the object oriented way to create an equals method to compare two objects
  */

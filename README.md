@@ -16,8 +16,8 @@ Instructions for cloning and pulling repo (per update):
 
 3. You will then see a line similar to this:
   
-  C:\Users\"User">
-            ^ This will be the name of the username you are logged in under
+  C:\ Users\ "User">
+              ^ This will be the name of the username you are logged in under
             
 4. After getting the above prompt on your command prompt, please change directory to Desktop, as that is where the JAVA-Testing file will be saved by default!
   ** You can achieve this by entering the following after ">" sign

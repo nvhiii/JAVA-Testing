@@ -28,7 +28,7 @@ Instructions for cloning and pulling repo (per update):
   
 5. If you followed all steps, including the mandatory prerequisite, you should have git installed on your pc. Therefore, now you can simply enter the following the the command prompt:
 
-git clone [insert HTTPS clone link here>]
+git clone [insert HTTPS clone link here]
   
   ** (please remove the "[" and "]" from your command prompt entry)
   

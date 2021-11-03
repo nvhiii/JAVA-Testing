@@ -541,6 +541,10 @@ subclass - a class extended from another class
     ** child class / extended class / derived class
     ** inherts all accessible data fields and methods from superclass and may add data fields and methods
 
+Inheritence: You could extend a class at most once (Every class could only have 1 parent)
+    ** Inheritence is like what you have with exceptions, where there is one big exception that lets its child classes to extend the parent, and so on, it continues on - like a family tree. 
+    ** Using "this" keyword to access your class's constructor, used to initialize the constructor partially. 
+
 superclass - class that another class that extends from
     ** parent class / base class
 
@@ -599,6 +603,8 @@ TestCircleRectangle.java
 - constructing an instance of a class invokes constructors of all superclasses along inheritance chain until the last constructor along the hierarchy is called
     ** constructor chaining^^
 
+- UML Diagram of: Parent(base) class is super class, child(derived) class is a sub-class
+
     simple example of constructor chaining:
 
     1 public class Faculty extends Employee {
@@ -637,6 +643,13 @@ TestCircleRectangle.java
     syntax:
 
     super.method(args);
+
+- You could chain super constructors if the parent has a parent.
+    ** everything that belongs to the parent, the parent should print it,
+    or get the methods from the parent class instead of doing the operations from a child class, child class should only be reponsible for its own behavior, like providing the toString method.
+     
+- Using "super" keyword to access the constructor and methods of Parent class
+- Superflous 
 
 
 11.4: Overriding Methods
@@ -1028,6 +1041,7 @@ Relevant code:
     
 
 // **add chapter 13 here
+
 
 PHONEBOOK2 USES COMPOSITION **
 

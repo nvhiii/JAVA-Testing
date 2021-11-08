@@ -854,24 +854,60 @@ Q: Why doesn't Student b = o not work?
     Then downcasts in the println stmnt using the proper notation
     */
 
-    
+11.10: The Object's equals Method
 
+- equals(Object) method is useful method definted in the object class
 
+    syntax:
 
+    object1.equals(object2);
 
+    object1.equals(object2);
 
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
 
+    /**
+    This checks two reference variables point to the same object using == operator
+    */
 
+11.11: The ArrayList Class
 
-/** 
- * Because method m has param Object, the declared type methods that extend the parent type override the actual type object toString method (please refer to DynamicBindingDemo)
-*/
+- ArrayList object can be used to store a list of objects
 
+    Method(s):
 
+    +ArrayList()
+    +add(e: E): void
+    +add(index: int, e: E): void
+    +clear(): void
+    +contains(o: Object): boolean
+    +get(index: int): E
+    +indexOf(o: Object): int
+    +isEmpty(): boolean
+    +lastIndexOf(o: Object): int
+    +remove(o: Object): boolean
+    +size(): int
+    +remove(index: int): E
+    +set(index: int, e: E): E
 
+- Arraylist is a generic class with generic type E
+    ** Specify concrete type to replace E
 
+    e.g.
 
+    ArrayList<String> cities = new ArrayList<String>();
 
+        ^^ here, E is replaced with the var cities
+
+11.12: Useful Methods for Lists
+
+11.13: Case Study: A Custom Stack Class
+
+11.14: The protected Data and Methods
+
+11.15: Preventing Extending and Overriding
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

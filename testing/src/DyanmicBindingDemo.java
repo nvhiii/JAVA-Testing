@@ -25,3 +25,10 @@ class Person extends Object {
         return "Person";
     }
 }
+
+/** 
+ * Because method m has param Object, the declared type methods override the actual type object toString method
+*/
+
+
+

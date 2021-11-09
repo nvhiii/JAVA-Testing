@@ -13,8 +13,12 @@ https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/ExampleByChapter
 Chapter 9) Objects and Classes
 
 9.1: Introduction
+- Can use OOP for 'reusable software'
 
 9.2: Defining Classes for Objects
+- OOP involves programming using objects
+- instances are often referred to as objects (interchangeable)
+
 
 9.3: Defining Classes and Creating Objects
 

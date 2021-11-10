@@ -5,11 +5,20 @@ Key:
 - Chapter subsections end with "-" character
 - Relevant code provided at end of each section / subsection
 
+https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/ExampleByChapters.html
+
+^^ all liang src tb code is in the link above, I just collected them into this src file
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 9) Objects and Classes
 
 9.1: Introduction
+- Can use OOP for 'reusable software'
 
 9.2: Defining Classes for Objects
+- OOP involves programming using objects
+- instances are often referred to as objects (interchangeable)
+
 
 9.3: Defining Classes and Creating Objects
 
@@ -108,6 +117,7 @@ ref variable with default value null
 
 9.14.2 - Using this to Invoke a Constructor
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 10) Object-Oriented Thinking
 
 10.1: Introduction
@@ -275,7 +285,7 @@ LargeFactorial.java
 10.10: The String Class
 
 - String objects are immutable, it cannot be changed once it is created
-    methods:
+    Method(s):
         - charAt(index)
         - length()
         - substring
@@ -340,7 +350,7 @@ e.g.
         for (int i = 0; i < tokens.length; i++)
             System.out.print(tokens[i] + " ");
 
-        displays Java HTML Perl
+        displays Java HTML Perl because # is the delimiter and the for loop iterates the array tokens, adding a space in between each word
 
 10.10.4 - Matching, Replacing, and Splitting by Patterns
 
@@ -387,6 +397,7 @@ e.g.
 
 - can also use getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)
     ** to copy substring of string from index srcBegin to index srcEnd-1 into array dst starting from index dstBegin
+    ** gets char from another string from firstNum (inclusive) to nextNum specified, specified array, then adds into specified index
 
 10.10.6 - Converting Characters and Numeric Values to Strings
 
@@ -401,6 +412,31 @@ e.g.
 
     syntax:
     String.format(format, item1, item2, ..., itemn);
+
+    Reference to formatting:
+    https://stackabuse.com/how-to-format-a-string-in-java-with-examples/
+
+    Format specifiers:
+    %c - Character
+    %d - Decimal number (base 10)
+    %e - Exponential floating-point number
+    %f - Floating-point number
+    %i - Integer (base 10)
+    %o - Octal number (base 8)
+    %s - String
+    %u - Unsigned decimal (integer) number
+    %x - Hexadecimal number (base 16)
+    %t - Date/time
+    %n - Newline
+
+    Formatting cmds:
+    \b - Insert backspace
+    \f - Next line's first character starts to the right of current line's last character
+    \n - Insert newline
+    \r - Insert carriage return
+    \t - Insert tab
+    \\ - Insert backslash
+    %% - Insert percentage sign
 
 10.11: The StringBuilder and StringBuffer Classes
 
@@ -470,6 +506,9 @@ e.g.
     Method(s)
     +toString(): String // Returns a string object from the string builder.
 
+    // the toString method when used on a object returns by default ObjectClass@hexadecimal of object hashcode if an overloaded toString is not created
+    // this is due to the toString method in the Object class
+
     +capacity(): int    // Returns the capacity of this string builder.
 
     +charAt(index: int): char   // Returns the character at the specied index.
@@ -488,11 +527,394 @@ e.g.
 10.11.3 - Case Study: Ignoring Nonalphanumeric Characters When Checking Palindromes
 
 Relevant code:
-PalindromeIgnoreNonAlphanumeric.java
+PalindromeIgnoreNonAlphanumeric.java // gotta do this in the src
 
--------------------------------------------------------------------------------------------------------
-// **add ch 11 here
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Chapter 11) Inheritance and Polymorhpism
 
+11.1: Introduction
+
+Inheritance - the ability to define new classes from existing classes
+    ** powerful feature for reusing software
+
+11.2: Superclasses and Subclasses
+
+- Inheritance enables the definition of a general class (superclass) and extend to a subclass
+
+subclass - a class extended from another class
+    ** child class / extended class / derived class
+    ** inherts all accessible data fields and methods from superclass and may add data fields and methods
+
+Inheritence: You could extend a class at most once (Every class could only have 1 parent)
+    ** Inheritence is like what you have with exceptions, where there is one big exception that lets its child classes to extend the parent, and so on, it continues on - like a family tree. 
+    ** Using "this" keyword to access your class's constructor, used to initialize the constructor partially. 
+
+superclass - class that another class that extends from
+    ** parent class / base class
+
+subtype - type defined by a subclass
+
+is-a relationship - subclass "is-a" part of superclass
+
+** once again, private data fields in a class cannot be accessed from another class
+** therefore, subclasses cannot access private data fields in their corresponding superclass
+
+Key Takeaways Regarding Inheritance:
+
+- Subclass is NOT a subset of superclass, instead it has more info and methods than the superclass
+
+- Private data fields in superclass not accessible outside the class, therefore cannot be used directly in subclass
+    ** they can be accessed/modified through public accessors/mutators ONLY IF defined in the SUPERCLASS
+
+- Not all is-a relationships should be modeled using inheritance b/c not all subclasses has a is-a relationship w/ others under the same superclass
+
+- Don't extend a class unless the classes have an "is-a" relationship
+
+- Java does not have multiple inheritance, thus you CANNOT derive subclass from several classes
+    ** This is called single inheritance, where a subclass can ONLY have one parent
+
+11.3: Using the super Keyword
+
+- super refers to the superclass (parent) & invokes superclasses methods and constructors
+
+- subclass inherits accessible data fields and methods
+
+    ** this reference can be used to call a superclass constructor or a superclass method
+
+Relevant code:
+SimpleGeometricObject.java
+CircleFromSimpleGeometricObject.java
+RectangleFromSimpleGeometricObject.java
+TestCircleRectangle.java
+
+11.3.1 - Calling Superclass Constructors:
+
+- constructors of a superclass are not inherited by a subclass, but they can be invoked using super keyword
+
+    e.g.
+
+    super() or super(args);
+
+    public Circle(double radius, String color, boolean filled) {
+        super(color, filled); // this refers to the superclass geometricObject's args constructor
+        this.radius = radius;
+    }
+
+11.3.2 - Constructor Chaining
+
+- constructor may invoke overloaded constructor(multiple same name constructors, diff param) or superclass constructor
+
+- constructing an instance of a class invokes constructors of all superclasses along inheritance chain until the last constructor along the hierarchy is called
+    ** constructor chaining^^
+
+- UML Diagram of: Parent(base) class is super class, child(derived) class is a sub-class
+
+    simple example of constructor chaining:
+
+    1 public class Faculty extends Employee {
+    2   public static void main(String[] args) {
+    3       new Faculty();
+    4   }
+    5
+    6   public Faculty() {
+    7       System.out.println("(4) Performs Faculty's tasks");
+    8   }
+    9  }
+    10
+    11  class Employee extends Person {
+    12      public Employee() {
+    13          this("(2) Invoke Employee's overloaded constructor");
+    14          System.out.println("(3) Performs Employee's tasks ");
+    15  }
+    16
+    17      public Employee(String s) {
+    18          System.out.println(s);
+    19      }
+    20  }
+    21
+    22  class Person {
+    23      public Person() {
+    24          System.out.println("(1) Performs Person's tasks");
+    25      }
+    26   }
+
+** if a class is designed to be extended, provide a no-arg constructor to avoid errors
+
+11.3.3 - Calling Superclass Methods
+
+- keyword super can be used to reference method other than constructor in superclass
+    ** (parents call their parents, can never call constructor using super.super THIS IS WRONG)
+    syntax:
+
+    super.method(args);
+
+- You could chain super constructors if the parent has a parent.
+    ** everything that belongs to the parent, the parent should print it,
+    or get the methods from the parent class instead of doing the operations from a child class, child class should only be reponsible for its own behavior, like providing the toString method.
+     
+- Using "super" keyword to access the constructor and methods of Parent class
+- Superflous 
+
+
+11.4: Overriding Methods
+
+- to override a method, the method must be defined in the subclass using same signature as its superclass
+
+- we override with the @Override above the method
+
+- we only override because there is ambiguity in regards to the parents class method and the child class method have a same method signature
+
+- Overriding method must have same signature as overridden method and same/compatible return type
+    ** signature is part of method declaration, it is the method name + params
+
+- Instance method can be overridden only if it is accessible
+    ** private method cannot be overridden
+
+- if a a method is overridden, it cannot be called
+8
+- Static method can also be inherited but cannot be overridden
+
+// This topic is sort-of confusing, will revisit this in more depth later**
+
+11.5: Overriding vs. Overloading
+
+- overriding is to provide a new implementation for a method in the subclass
+    ** if there is a subclass of a superclass with same method signature as the method in the superclass, the subclass method would override the method in the superclass
+    ** lose access to parents method, etc.
+    ** common practice to often override parents method
+
+- overloading is to define multiple methods w/ the same name but diff signatures
+    ** same method name except for params, therefore is overloading
+    ** don't lose access to parenets methods, etc.
+    ** can use parents method in the childs method by calling it
+
+
+∵
+- overridden methods are in diff classes by inheritance (super / subclass)
+
+- overloaded methods can be either in same class of diff classes by inheritance
+
+- overridden methods have same signature
+
+- overloaded methods have same name but diff param
+
+    syntax:
+
+    public class Circle extends GeometricObject {
+
+        @Override
+        public String toString0 {
+            return super.toString() + "\n" + "radius is " + radius;
+        }
+    }
+
+    ** the @Override is called override annotation, which is oft3en placed before the overriding method
+        Using this annotation, mistakes can be avoided
+
+11.6: The Object Class and Its toString() Method
+
+- Every class in Java is descended from the java.lang.Object class
+
+    syntax:
+    public String toString()
+
+- invoking toString() on object returns a string that describes the object
+
+Common Issue with toString() Method:
+
+    e.g.
+    Loan loan = new Loan();
+    System.out.println(loan.toString());
+
+    // this displays Loan@15037e5 (binary bs) <- object class + @ + hexadecimal of object
+
+** To avoid this issue, override the toString method in the Object class
+
+11.7: Polymorphism
+
+- means that a var of supertype can refer to subtype object
+
+There are 3 Pillars of OOP (Object Oriented Programming)
+
+1. Data hiding in ENCAPSULATION
+
+2. Inheritance -  your class and other class, your class gets something from the other class (child class gets from the parent class etc.)
+    ** inherits attributes and methods from another class
+    ** Each class has exactly one parent, something exclusive to JAVA
+    ** this is a "IS A" relationship unike composition & aggregation, which are "HAS A" relationships
+    ** instance variable - created when object created
+
+    notes:
+    ** yes, you can call methods of parent class, but only the public methods
+    ** constructor of the parent is called in the 1st stmnt of constructor / if no call to super, compilar puts it in for you
+    ** if a subclass is created w/o a superclass but now it has the said parent class, it has additional fields
+    ** subclass does inherit private data fields of super class (in regards to the object created)
+
+3. Polymorphism
+    ** an object of a subclass can be used wherever its superclass object's reference is used
+    ** Uses methods attained from inheritance to perform other tasks
+
+    e.g. Shape myShape = new Rectangle();
+        ** as long as subtype class "IS A" object supertype (this is stored in a supertype var) **
+
+        superclass var = subclass object();
+
+    concept is that even though it is restricted by types, must have reference of same type 
+        ** (only methods you could call are things of type of the reference),
+
+
+    Using array of objects to find out if they are siblings
+
+    How to tell if two objects are siblings: assigned an object of subclass to a superclass reference var
+        ** Use an array of objects to find out if they are siblings
+
+        e.g. 
+
+        for (Shape shp : listOfShapes) {    // enhanced for-loop
+
+            System.out.println("color: " + shp.getColor());
+        }
+
+Relevant code:
+PolymorphismDemo.java // review this code
+
+** This topic is sort-of confusing as well, check back later
+
+11.8: Dynamic Binding:
+
+- determines which method is called based off the actual type
+
+- a method can be implemented in several classes in inheritance chain. JVM decides which is invoked
+
+- when compiler cannot compile call/binding at compile time
+
+Which method: overloaded / overridden method is invoked first?
+
+- a variable must be declared a type
+
+declared type - type that declares a var is called vars declared type
+    
+    type - variables and expressions all have this; e.g. int, double, Object, etc.
+
+    ** var of reference type can hold null or reference to instance of declared type
+        ** instance may be created using the constructor of declared type or subtype
+
+
+actual type - the actual class for object referenced by var (the type pointed to by the var)
+
+- the method that invokes an object is determined by the object's actual type // known as dynamic binding
+
+    e.g. of declared and actual type
+    Object o = new GeometricObject();
+
+    ** Object is the declared type
+    ** GeometricObject is the actual type b/c o references object created using new GeometricObject()
+        ** the toString() method invoked is based off the actual type
+
+Relevant code:
+DynamicBindingDemo.java
+
+11.9: Casting Objects and the instanceof operator
+
+- typechecking (of declared an actual type by compiler)
+- object reference can be typecast into another object reference
+
+    e.g.
+
+    m(new Student()) (is equals to)
+
+    Object o = new Student();
+    m(o);
+
+    // implicit Casting ^^
+        ** Legal b/c Student is an instance of Object (upcasting)
+        ** Always possible b/c instance of subclass always is an instance of superclass
+
+Q: Why doesn't Student b = o not work?
+    A: b/c Student object is instance of Object, but Object is not instance of Student
+
+    To solve this issue that the compiler cannot figure out do:
+
+    Student b = (Student)o
+
+    // explicit casting ^^ (downcasting)
+        ** Casting insance of superclass to var of subclass must be used to confirm intention of downcasting using the above notation
+        ** For this casting to be successful, make sure object cast is an instance of subclass
+            ** otherwise, ClassCastException occurs
+
+    ** use instanceof operator to downcast
+
+    e.g.
+
+    void someMethod(Object myObject) {
+
+        if (myObject instanceof Circle) {
+            System.out.println("The circle diameter is" + ((Circle)myObject).getDiameter());
+
+        }
+    }
+    /**
+    So this method is checking if superclass object myObject is an instance of subclass type Circle
+    Then downcasts in the println stmnt using the proper notation
+    */
+
+11.10: The Object's equals Method
+
+- equals(Object) method is useful method definted in the object class
+
+    syntax:
+
+    object1.equals(object2);
+
+    object1.equals(object2);
+
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
+
+    /**
+    This checks two reference variables point to the same object using == operator
+    */
+
+11.11: The ArrayList Class
+
+- ArrayList object can be used to store a list of objects
+
+    Method(s):
+
+    +ArrayList()
+    +add(e: E): void
+    +add(index: int, e: E): void
+    +clear(): void
+    +contains(o: Object): boolean
+    +get(index: int): E
+    +indexOf(o: Object): int
+    +isEmpty(): boolean
+    +lastIndexOf(o: Object): int
+    +remove(o: Object): boolean
+    +size(): int
+    +remove(index: int): E
+    +set(index: int, e: E): E
+
+- Arraylist is a generic class with generic type E
+    ** Specify concrete type to replace E
+
+    e.g.
+
+    ArrayList<String> cities = new ArrayList<String>();
+
+        ^^ here, E is replaced with the var cities
+
+11.12: Useful Methods for Lists
+
+11.13: Case Study: A Custom Stack Class
+
+11.14: The protected Data and Methods
+
+11.15: Preventing Extending and Overriding
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 12) Exception Handling and Text I/O
 
 12.1: Introduction
@@ -635,25 +1057,70 @@ Relevant code:
 CircleWithException.java
 TestCircleWithException.java
 
-3 Pillars of OOP (Object Oriented Programming)
 
-1. Data hiding in ENCAPSULATION
+12.5: The finally Clause
 
-2. Inheritance -  your class and other class, your class gets something from the other class (child class gets from the parent class etc.)
-    ** Each class has exactly one parent, something exclusive to JAVA
-    ** this is a "IS A" relationship unike composition & aggregation, which are "HAS A" relationships
+12.6: When to Use Exceptions
 
-3. Polymorphism
+12.7: Rethrowing Exceptions
+
+12.8: Chained Exceptions
+
+Relevant code:
+ChainedExceptionDemo.java
+
+12.9: Defining Custom Exception Classes
+
+Relevant code:
+InvalidRadiusException.java
+TestCircleWithCustomException.java
+
+12.10: The File Class
+
+    Method(s):
 
 
+Relevant code:
+TestFileClass.java
+
+12.11: File Input and Output
+
+12.11.1 - Writing Data Using PrintWriter
+
+    Method(s):
+
+Relevant code:
+WriteData.java
+
+12.11.2 - Closing Resources Automatically Using try-with-resources
+
+Relevant code:
+WriteDataWithAutoClose.java
+
+12.11.3 - Reading Data Using Scanner
+
+    Method(s):
 
 
+Relevant code:
+ReadData.java
 
+12.11.4 - How Does Scanner Work?
 
+12.11.5 - Case Study: Replacing Text
 
+Relevant code:
+ReplaceText.java
 
+12.12: Reading Data from the Web
 
+Relevant code:
+readFileFromURL.java
 
+12.13: Case Study: Web Crawler
+
+Relevant code:
+WebCrawler.java
 
 
 Relevant code:
@@ -664,6 +1131,10 @@ Relevant code:
 
     
 
-
 // **add chapter 13 here
+
+
+PHONEBOOK2 USES COMPOSITION **
+
+What is the object oriented way to create an equals method to compare two objects
  */

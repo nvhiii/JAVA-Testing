@@ -9,6 +9,14 @@ https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/ExampleByChapter
 
 ^^ all liang src tb code is in the link above, I just collected them into this src file
 
+Useful Keyboard Shortcuts Reference(s):
+
+https://itnext.io/keyboard-shortcuts-for-a-developer-e6d1203774f6
+
+https://www.indiatoday.in/information/story/computer-shortcut-keys-everyone-should-know-1480158-2019-03-17
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 9) Objects and Classes
 
@@ -19,14 +27,60 @@ Chapter 9) Objects and Classes
 - OOP involves programming using objects
 - instances are often referred to as objects (interchangeable)
 
+state of an object - properties / attributes (aka datafields)
+Behavior of an object - represented through methods
+
+class - a contract that defines an object's (instance's) data fields and methods
+
+instantiation - creating an instance (object)
+
+constructor - a special method in a class which allows for the creation of an instance of the class
+
+Unified Modeling Language (UML) - notation of a class diagram that separates the class and its methods from its instances
 
 9.3: Defining Classes and Creating Objects
 
+client (of a class) - the (OG) class that uses another class to run in the main method of the OG class
+    ** basically a class that uses another class is called this
+
+public class - since you can put multiple classes in a single file, only one class can be public which is determined by the name of the file
+    ** all other classes must be private
+
 9.4: Constructing Objects Using Constructors
+
+- constructors have no return type (not even void)
+
+- invoked using the new operator
+
+no-arg constructor - constructor with no args
+
+default constructor - a public no-arg constructor with an empty body which is implicitly designed ONLY if a class has no explicitly defined constructor
 
 9.5: Accessing Objects via Reference Variables
 
-Instance method - needs an object of class to be created before getting called
+9.5.1 - Reference Variables and Reference Types
+
+reference variable - contains references to the objects through the usage of a variable
+
+    e.g.
+    ClassName objectRefVar;
+
+reference type - a var of the class type that can reference an instance (object) of the class
+
+9.5.2 - Accessing and Object's Data and Methods
+
+- after instance (object) is created, it's data fields and methods can be invoked using the dot operator (.)
+
+    e.g.
+    objectRefVar.dataField
+
+    or
+
+    objectRefVar.method(args)
+
+instance variable - a field that is dependent on a specific instance (object)
+
+Instance method - needs an (instance) object of class to be created before getting called
                 + need to create object for this, thus often has no args
 
 Static methods - can just be called without creation of object
@@ -34,66 +88,160 @@ Static methods - can just be called without creation of object
                 + usually has args!! (doesn't always have to have args)
                 + also has the keyword STATIC
 
+9.5.3 - Reference Data Fields and the Null Value
+
+null value - is a literal like the boolean literals true and false, which is used as a literal for a reference type (object refvar basically)
+
+NullPointerException - common runtime error which occurs when you invoke a method on a reference var with a null value
+
 9.5.4 - Differences between Variables of Primitive Types and Reference Types
 
     primitive types - are literal values
 
     reference types - are references to objects, etc.
+        ** holds a reference to where the contents of the object type are stored in memory
 
 9.6: Using Classes from the Java Library
 
+9.6.1 - The Date Class
+
+    Method(s):
+
+    +Date()                     Constructs a Date object for the current time.
+
+    +Date(elapseTime: long)     Constructs a Date object for a given time in
+                                milliseconds elapsed since January 1, 1970, GMT.
+
+    +toString(): String         Returns a string representing the date and time.
+
+    +getTime(): long            Returns the number of milliseconds since January 1, 1970, GMT
+
+    +setTime(elapseTime: long): void    Sets a new elapse time in the object
+
+9.6.2 - The Random Class
+
+    Method(s):
+
+    +Random()                   Constructs a Random object with the current time as its seed.
+
+    +Random(seed: long)         Constructs a Random object with a specied seed
+
+    +nextInt(): int             Returns a random int value
+
+    +nextInt(n: int): int       Returns a random int value between 0 and n (excluding n).
+
+    +nextLong(): long           Returns a random long value.
+
+    +nextDouble(): double       Returns a random double value between 0.0 and 1.0 (excluding 1.0)
+
+    +nextFloat(): float         Returns a random float value between 0.0F and 1.0F (excluding 1.0F).
+
+    +nextBoolean(): boolean     Returns a random boolean value.
+
+9.6.3 - The Point2D Class
+
+    Method(s):
+
+    +Point2D(x: double, y: double)          Constructs a Point2D object with the specied x- and y-coordinates.
+
+    +distance(x: double, y: double): double Returns the distance between this point and the specied point (x, y).
+
+    +distance(p: Point2D): double           Returns the distance between this point and the specied point p.
+
+    +getX(): double                         Returns the x-coordinate from this point
+
+    +getY(): double                         Returns the y-coordinate from this point
+
+    +midpoint(p: Point2D): Point2D          Returns the midpoint between this point and point p.
+
+    +toString(): String                     Returns a string representation for the point.
+
+Relevant code:
+TestPoint2D.java
+
 9.7: Static Variables, Constants, and Methods
 
-Static variables - are often shared by the entire class, and are initialized in value
+Static variables (class variables) - are often shared by the entire class, and are initialized in value
 
-Instance variables - tied to specific instance of class, not shared with objects in same class
+Instance variables (member / member variable) - tied to specific instance of class, not shared with objects in same class
 
 Instance data fields - often are just data type followed by var = value !!
 
-Public modifiers, private modifiers, protected modifiers & Packages
+Instance Method v. Static Method
 
-Packages - are called using
-           [ package "PackageName"; ]
+Instance Method
+1. Can invoke instance method (instance method need an object/instance created of the class therefore, can chain instance methods)
+2. Can access instance variable (instance variables need instance of a class as well, therefore can be accessed)
+3. Can invoke static method (static method can be invoked anywhere in the entire class)
+4. Can access static data field (static data fields shared by entire class)
 
-           If class is defined w/o package stmnt, it is in default package
+Static Method
+1. Cannot invoke instance method ^^ look at above reasoning
+2. Cannot access instance variable
+3. Can invoke static method
+4. Can access static data field
+
+Relevant code:
+Circle.java
+TestCircleWithStaticMembers.java
 
 9.8: Visibility Modifiers
 
+- public visibility modifier used to denote they can be accessed from any other class
+
+package-private (or package-access) - when no visibility modifier is used, by default the classes, methods, and data fields are accessible by any class in the same package
+
 Public modifiers - Allows for access of member from inside and outside pkg
+
+    Syntax of package calling (before class and all imports):
+
+    package "PackageName";
 
 Private modifiers - Allows for access of data fields in own class
 
 Protected modifiers - Allows for access of member in its own package
 
-9.9: Data Field Encapsulation
+private constructor - only should be used when you want to prohibit the user from creating an instance of the class
 
-If you want users to be prohibited from creating in a certain class,
-make the constructor private! (usually should be public)
+9.9: Data Field Encapsulation
 
 Data Field Encapsulation - to prevent direct modifications of data fields,
 declare data fields private using the private modifier!!
 
-Often, you need to retrieve and modify data fields, this is accomplished
-with private by using a getter method.
+- Often, you need to retrieve and modify data fields, to accomplish this with private data fields, you use a getter method.
 
 e.g.
-    public returnType getPropertyName(); // accessor
+    public returnType getPropertyName(); // accessor (getter)
 
     public boolean isPropertyName(); // e.g. of a boolean accessor
 
-setter e.g.
+setter (mutator) e.g.
     public void setPropertyName(dataType propertyValue)
+
+Relevant code:
+Circle.java (for CircleWithPrivateDataFields)
+TestCircleWithPrivateDataFields.java
 
 9.10: Passing Objects to Methods
 
+- Objects can be passed as param for methods
+    ** passing an object is actually passing the reference of the object
+
+Pass-by-value - the one mode of passing arguments that java uses
+
+Relevant code:
+TestPassObject.java
+
 
 9.11: Array of Objects
+
+- an array can hold objects as well as primitive-type values
 
 Syntax:
     Circle[] circleArray = new Circle[10];
 
     // this stmnt declares and creates an array of 10 circle objects
-   to initialize, you can use a for loop
+   to initialize (objects/instances), you can use a for loop
 
    for (int i = 0; i < circleArray.length; i++) {
     circleArray[i] = new Circle();
@@ -104,18 +252,42 @@ ref variable with default value null
 **printf is print formatting**
     - can check formatting documentation whilst using printf, useful for formatting
 
+Relevant code:
+TotalArea.java
+
 9.12: Immutable Objects & Classes
-    - occassionally it is desirable to create an object whose contents cannot be changed once object is created
-        - "immutable" class & object
+- occassionally it is desirable to create an object whose contents cannot be changed once object is created
+    - "immutable" class & object
     - if class is immutable, all data fields must be private w/ no public setter methods
 
-9.13: Variable Scope
+9.13: The Scope of Variables
+
+local variable - a variable defined inside a method
+
+- the scope of a class's variables is the entire class, regardless of where they are declared
+
+- as long as a class variable doesn't interfere with another variables initialization in the scope of the class, the class variable can be declared anywhere
+    ** e.g. local variables in another method aren't affected
+
+hidden variable - if local var has same name as class var, the local var takes precedence and class var is hidden
 
 9.14: This key-word to reference data fields
 
+- the this key-word refers to the object itself
+
+- the this key-word is also used to reference the object's instance variables
+
 9.14.1 - Using this to Reference Data Fields
 
+- the this-keyword gets rid of the hidden variable which is created through the creation of a local variable in a another method
+    ** allows for access of a hidden instance variable
+    ** THIS IS A GOOD PRACTICE
+
+- a hidden static variable can be accessed using ClassName.staticVariable reference
+
 9.14.2 - Using this to Invoke a Constructor
+
+- the this keyword can be used to invoke another constructor from within a constructor
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 10) Object-Oriented Thinking

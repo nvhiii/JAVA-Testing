@@ -289,6 +289,21 @@ hidden variable - if local var has same name as class var, the local var takes p
 
 - the this keyword can be used to invoke another constructor from within a constructor
 
+Summary:
+
+1. Class is a template for objects and defines properties of instances(objects) and their behaviors through methods like constructors, etc.
+
+2. Classes are a data type to declare objRefVar, which holds a ref var of the object class
+
+3. Object is an instance of a class, you create an object using the new operator and use the dot operator to access its appropriate data fields and methods
+
+4. Intance variable/ method belongs to an instance of class, therefore they are associated with specific objects
+    Static variable is a local variable tht is shared by all instances of class.
+    A static method can be called without the creation of an instance of a class
+
+5. Every instance of a class can access the class's static var and methods
+
+6. Visibility modifiers specify
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 10) Object-Oriented Thinking
 
@@ -883,6 +898,18 @@ TestCircleRectangle.java
     ** the @Override is called override annotation, which is oft3en placed before the overriding method
         Using this annotation, mistakes can be avoided
 
+    ** override is good to use for equals method
+
+    e.g.
+
+    public boolean equals(className classObjType) {
+        ... insert statements here
+    }
+
+    public boolean equals(subclassName subclassType) {
+        super.equals(subclassType);
+    }
+
 11.6: The Object Class and Its toString() Method
 
 - Every class in Java is descended from the java.lang.Object class
@@ -947,6 +974,43 @@ There are 3 Pillars of OOP (Object Oriented Programming)
             System.out.println("color: " + shp.getColor());
         }
 
+    ** You can create another method in the superclass to resolve issue of subclass method not running with object of super type as param
+
+abstract method - method w/ no code, just for type usage, superclass method that is to be overridden by subclass methods
+
+    Syntax:
+
+    public abstract returnType methodName();
+
+        ** for the children, add @Override before every abstract method inherited by subclasses
+
+    ** as soon as you have single abstract method in a class, the class needs to be declared abstract
+
+    Syntax:
+
+    public abstract class className {
+        ... add data fields and methods here
+    }
+
+    abstract class - should only have abstract class so children can inherit methods
+        - the children inherit all methods, so they can call methods
+
+        - the compiler sticks in super via the children/subclasses
+
+        - NOTHING happens to the constructors, instantiation just can't be done normally through the abstract class
+            ** to create object of abstract class, use polymorphism where subclass type is an object super type
+
+        - can still have regular methods
+
+        - you can use this in a collection of data (array, etc.)
+
+        - in the subclass constructors, you should use super with the params from the args to instantiate
+
+
+    concrete class - can instantiate objects (no special syntax)
+
+
+
 Relevant code:
 PolymorphismDemo.java // review this code
 
@@ -956,7 +1020,9 @@ PolymorphismDemo.java // review this code
 
 - determines which method is called based off the actual type
 
-- a method can be implemented in several classes in inheritance chain. JVM decides which is invoked
+- bascially when compiler decides which method to run at runtime
+
+- a method can be implemented in several classes in inheritance chain. JVM decides which is invoked at runtime
 
 - when compiler cannot compile call/binding at compile time
 
@@ -1009,13 +1075,12 @@ Q: Why doesn't Student b = o not work?
 
     Student b = (Student)o
 
-    // explicit casting ^^ (downcasting)
+    // explicit casting ^^ (downcasting) ** THIS IS NOT OBJECT ORIENTED PROGRAMMING **
         ** Casting insance of superclass to var of subclass must be used to confirm intention of downcasting using the above notation
         ** For this casting to be successful, make sure object cast is an instance of subclass
             ** otherwise, ClassCastException occurs
 
     ** use instanceof operator to downcast
-
     e.g.
 
     void someMethod(Object myObject) {
@@ -1029,6 +1094,13 @@ Q: Why doesn't Student b = o not work?
     So this method is checking if superclass object myObject is an instance of subclass type Circle
     Then downcasts in the println stmnt using the proper notation
     */
+
+    ** or you can use getClass method to downcast
+    e.g.
+
+        if (myObject.getClass().getName().equals(Circle)) {
+
+        }
 
 11.10: The Object's equals Method
 

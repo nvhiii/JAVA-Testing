@@ -164,6 +164,8 @@ TestPoint2D.java
 Static variables (class variables) - are often shared by the entire class, and are initialized in value
 
 Instance variables (member / member variable) - tied to specific instance of class, not shared with objects in same class
+    **(no initialized value)
+    **(also declared outside methods)
 
 Instance data fields - often are just data type followed by var = value !!
 
@@ -191,7 +193,7 @@ TestCircleWithStaticMembers.java
 
 package-private (or package-access) - when no visibility modifier is used, by default the classes, methods, and data fields are accessible by any class in the same package
 
-Public modifiers - Allows for access of member from inside and outside pkg
+Public modifiers - Allows for access of member (class) from inside and outside pkg
 
     Syntax of package calling (before class and all imports):
 
@@ -303,36 +305,130 @@ Summary:
 
 5. Every instance of a class can access the class's static var and methods
 
-6. Visibility modifiers specify
+6. Visibility modifiers specify how class, method, and data are accessed
+    e.g.
+    public - accessible to all clients
+    private - only accessbile inside the class
+
+7. Accessor (getter) method or setter (mutator) to enable clients to see / modify data
+
+8. A getter signature
+    public returnType getPropertyName() {}
+
+   A setter signature
+    public void setPropertyName(dataType propertyValue) {}
+
+9. Parameters passed to methods using pass-by-value. Parameter of primitive type actual value is passed, reference type reference of object is passed
+
+10. Array is an object that can contian primitive types of object types. When array is created, the elements by default are null
+
+11. Immutable objects cannot be modified. To prevent the modification of an object, create immutable class
+
+12. Scope of static and instance variables is the entire class, regardless of where they are declared. (they are class var)
+    ** local variables only have scope of certain method they are in
+
+13. this keyword can be used to refer to the calling object. Also is used inside a constructor to invoke another constructor of the same class
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 10) Object-Oriented Thinking
 
 10.1: Introduction
 
+- class design
+
+- procedural programming v. object-oriented programming
+
 10.2: Class Abstraction and Encapsulation
+
+class abstraction - separates class implementation from how the class is used
+
+contract - a combo of class fields, methods, and constructors
+
+class encapsulation - details of a class's implementation are encapsulated and hidden from the user
+
+Abstract data type (ADT) - class's type b/c class instantiated, but you don't need to know what goes on in the background
+
+Relevant code:
+TestLoanClass.java
+Loan.java
 
 10.3: Thinking in Objects
 
+- method design
+    ** couples data and methods into objects
+    ** this leads to focus on objects and the operations on objects
+
+object-oriented paradigm vs. procedural
+
+    procedural paradigm - focuses on the design of methods
+
+    object-oriented paradigm - couples data and methods together into objects
+        ** combines power of procedural paradigm that integrates data w/ operations
+
+Relevant code:
+UseBMIClass.java
+BMI.java
+
 10.4: Class Relationships
 
-Association
-    - relations implemented using data fields
-    **different classes access another class which they share in common**
-    -
+10.4.1 - Association
 
-Aggregation
-    - may exist between objects of same class
+    - relations implemented using data fields
+        **different classes access another class which they share in common**
+    - general binary relationship which describes an activity between two classes
+    - can implement associations using data fields and methods
+
+    ** The UML diagrams for association follows certain rules:
+
+        - boxes to represent classes which have solid lines connecting it to another class
+        - a filled-in triangle above the solid lines which labels the relationship between the classes
+        - a role name for the class which goes under the solid line connecting the class (optional)
+        - multiplicity on top of the solid lines next to the class they show the limits for
+            ** for a class connected on multiple sides, the multiplicity goes on the top right
+            ** for a class on the verymost right, the multiplicity goes on the left above the solid line connecting the class
+                ^^ vice versa for vermost left as well
+
+            Syntax:
+
+            m..n (5..60)
+
+
+
+multiplicity - placed at side of class to speicify how many of the class's objects are involved in the relationship in UMl
+
+10.4.2 - Aggregation and Composition
+
+Aggregation - a special form of association that may exist between objects of same class
     - represents ownership relationship between two objects'
     - models a "has-a" relationship
+
+Aggregating object - the owner object
+
+Aggregating class - aggregating object's class
+
+Aggregated object - subject object
+
+Aggregated class - subject object's class
+
+Composition - aggregation between two objects if the existence of the aggregated object is dependent on the aggregating object
+
+    e.g.
+
+       Student has a name, composition (because name is aggregated obj dependent on the aggregating obj student)
+
+       Student has an address, aggregation (because address is aggregated obj that is NOT dependent on the aggregating obj student // basically the Address object can exist on its own)
+
+If aggregated obj dependent on aggregating obj --> COMPOSITION
+
+If aggregated obj is NOT dependent on aggregating obj --> AGGREGATION
 
     - the OWNER object is called an aggregating object and its class is called an aggregating class
     - the SUBJECT object is called an aggregated object, and its class is called an aggregated class
     - this is called composition if the existence of the aggregated object is dependent on the aggregating object
     - it implies one object exclusive ownership
+
     - a filled black diamond attached to aggregating class represents composition
 
     - an unfilled white diamond attached to aggregating class represents aggregation
-
 
     e.g.
     public class Person {
@@ -340,18 +436,25 @@ Aggregation
     private Person supervisor;
 
     }
+    // exemplifies a has-a relationship
 
-
-    }
 
 10.5: Case Study: Designing the Course Class
 
+Relevant code:
+TestCourse.java
+Course.java
+
 10.6: Case Study: Designing Class for Stacks
 
-Relevant code:
+stack - data structure that holds data in a last-in, first out fashion
+    ** or a first-in, last-out fashion
 
+Relevant code:
 TestStackOfIntegers.java
 StackOfIntegers.java
+
+Miscellaneous Notes:
 
 public keyword - declare's member's access as public
 
@@ -369,6 +472,7 @@ API - application programming interface (offering service to other software)
         - int to Integer
         - double to Double
         - char to Character
+
 Using these wrapper classes, you can process primitive data types as objects
     e.g. of Wrapper classes in java.lang package
     - Boolean
@@ -434,11 +538,19 @@ static parsing methods
 
 10.8: Automatic Conversion Between Primitive Types and Wrapper Class Types
 
-- converting a primitive value to a wrapper object is called boxing
-- the reverse process is called unboxing
+boxing - conversion of a primitive value to a wrapper object
+
+autoboxing - when the compiler automatically boxes a primitve value in a context requiring an object
+
+unboxing - conversion of a wrapper object to a primitive value
+
+autounboxing - when the compiler automatically unxboxes an object in a context requiring a primitive value
 
 e.g.:
     Integer intObject = new Integer(2); (is equal to)
+    ^classObj ^objRefVar            ^primitive value
+                ^wrapper object
+
     Integer intObject = 2;
 
     **this is due to autoboxing**
@@ -497,6 +609,7 @@ e.g.
 
 10.10.2 - Immutable Strings and Interned Strings
 
+- immutable object; contents cannot be changed
 - because strings are immutable, JVM uses unique instance of string literals to improve efficiency and save memory (interned string)
 - therefore, even if two string objects have same contents, they are not necessarily equal
 
@@ -556,6 +669,8 @@ e.g.
         ** Java.* is a regex which describes a string pattern that begins with Java followed by any zero of more characters
         or
 
+regex - regular expression that describes a pattern for matching, replacing, or splitting a string
+
         "440–02–4534".matches("\\d{3}–\\d{2}–\\d{4}")
 
         ** \\d represents a single digit, \\d{#} represents # digits
@@ -567,6 +682,8 @@ e.g.
             System.out.println(tokens[i]);
 
         ** this [.,:;?] specifies a pattern that matches any of the char inside the square brackets, and thus splits the string
+
+        result: Java C C# C++
 
 10.10.5 - Conversion between Strings and Arrays
 
@@ -627,7 +744,7 @@ e.g.
 
 10.11: The StringBuilder and StringBuffer Classes
 
-- these are mutable and can be used where a string is used
+- these are mutable and can be used where a string is used (THUS CAN BE CHANGED)
 - can add, insert, or append new contents into their objects
 
 - methods for modifying the buffer in StringBuffer are synchronized
@@ -715,6 +832,26 @@ e.g.
 
 Relevant code:
 PalindromeIgnoreNonAlphanumeric.java // gotta do this in the src
+
+Summary:
+
+1. Procedural paradigm focuses on designing methods. Object-oriented paradigm couples data and methods together in objects.
+    Object-oriented programming combines procedural paradigm with dimension of data in operations.
+
+2. Java offers way to wrap primitive data types into an object
+
+3. Java can automatically convert a primitive-type value to corresponding wrapper object & vice versa
+
+4. BigInteger class for computing & processing any size integers. BigDecimal to compute and process floating-point nums with precision
+
+5. String object is immutable.
+    interned string object - when the JVM stores two literal strings w/ same character sequence in a single object
+
+6. Regular expression (regex) is a string that describes a pattern for matching a set of strings (match, replace, split)
+
+7. StringBuilder and StringBuffer used to replace String class (b/c they are mutable)
+    ** use if the string contents will change
+    ** otherwise use String class
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 11) Inheritance and Polymorhpism

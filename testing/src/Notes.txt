@@ -212,12 +212,14 @@ declare data fields private using the private modifier!!
 
 - Often, you need to retrieve and modify data fields, to accomplish this with private data fields, you use a getter method.
 
-e.g.
+e.g. of Accessor
+
     public returnType getPropertyName(); // accessor (getter)
 
     public boolean isPropertyName(); // e.g. of a boolean accessor
 
-setter (mutator) e.g.
+e.g. of Setter
+
     public void setPropertyName(dataType propertyValue)
 
 Relevant code:

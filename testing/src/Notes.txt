@@ -164,6 +164,8 @@ TestPoint2D.java
 Static variables (class variables) - are often shared by the entire class, and are initialized in value
 
 Instance variables (member / member variable) - tied to specific instance of class, not shared with objects in same class
+    **(no initialized value)
+    **(also declared outside methods)
 
 Instance data fields - often are just data type followed by var = value !!
 
@@ -191,7 +193,7 @@ TestCircleWithStaticMembers.java
 
 package-private (or package-access) - when no visibility modifier is used, by default the classes, methods, and data fields are accessible by any class in the same package
 
-Public modifiers - Allows for access of member from inside and outside pkg
+Public modifiers - Allows for access of member (class) from inside and outside pkg
 
     Syntax of package calling (before class and all imports):
 
@@ -210,12 +212,14 @@ declare data fields private using the private modifier!!
 
 - Often, you need to retrieve and modify data fields, to accomplish this with private data fields, you use a getter method.
 
-e.g.
+e.g. of Accessor
+
     public returnType getPropertyName(); // accessor (getter)
 
     public boolean isPropertyName(); // e.g. of a boolean accessor
 
-setter (mutator) e.g.
+e.g. of Setter
+
     public void setPropertyName(dataType propertyValue)
 
 Relevant code:
@@ -303,36 +307,130 @@ Summary:
 
 5. Every instance of a class can access the class's static var and methods
 
-6. Visibility modifiers specify
+6. Visibility modifiers specify how class, method, and data are accessed
+    e.g.
+    public - accessible to all clients
+    private - only accessbile inside the class
+
+7. Accessor (getter) method or setter (mutator) to enable clients to see / modify data
+
+8. A getter signature
+    public returnType getPropertyName() {}
+
+   A setter signature
+    public void setPropertyName(dataType propertyValue) {}
+
+9. Parameters passed to methods using pass-by-value. Parameter of primitive type actual value is passed, reference type reference of object is passed
+
+10. Array is an object that can contian primitive types of object types. When array is created, the elements by default are null
+
+11. Immutable objects cannot be modified. To prevent the modification of an object, create immutable class
+
+12. Scope of static and instance variables is the entire class, regardless of where they are declared. (they are class var)
+    ** local variables only have scope of certain method they are in
+
+13. this keyword can be used to refer to the calling object. Also is used inside a constructor to invoke another constructor of the same class
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 10) Object-Oriented Thinking
 
 10.1: Introduction
 
+- class design
+
+- procedural programming v. object-oriented programming
+
 10.2: Class Abstraction and Encapsulation
+
+class abstraction - separates class implementation from how the class is used
+
+contract - a combo of class fields, methods, and constructors
+
+class encapsulation - details of a class's implementation are encapsulated and hidden from the user
+
+Abstract data type (ADT) - class's type b/c class instantiated, but you don't need to know what goes on in the background
+
+Relevant code:
+TestLoanClass.java
+Loan.java
 
 10.3: Thinking in Objects
 
+- method design
+    ** couples data and methods into objects
+    ** this leads to focus on objects and the operations on objects
+
+object-oriented paradigm vs. procedural
+
+    procedural paradigm - focuses on the design of methods
+
+    object-oriented paradigm - couples data and methods together into objects
+        ** combines power of procedural paradigm that integrates data w/ operations
+
+Relevant code:
+UseBMIClass.java
+BMI.java
+
 10.4: Class Relationships
 
-Association
-    - relations implemented using data fields
-    **different classes access another class which they share in common**
-    -
+10.4.1 - Association
 
-Aggregation
-    - may exist between objects of same class
+    - relations implemented using data fields
+        **different classes access another class which they share in common**
+    - general binary relationship which describes an activity between two classes
+    - can implement associations using data fields and methods
+
+    ** The UML diagrams for association follows certain rules:
+
+        - boxes to represent classes which have solid lines connecting it to another class
+        - a filled-in triangle above the solid lines which labels the relationship between the classes
+        - a role name for the class which goes under the solid line connecting the class (optional)
+        - multiplicity on top of the solid lines next to the class they show the limits for
+            ** for a class connected on multiple sides, the multiplicity goes on the top right
+            ** for a class on the verymost right, the multiplicity goes on the left above the solid line connecting the class
+                ^^ vice versa for vermost left as well
+
+            Syntax:
+
+            m..n (5..60)
+
+
+
+multiplicity - placed at side of class to speicify how many of the class's objects are involved in the relationship in UMl
+
+10.4.2 - Aggregation and Composition
+
+Aggregation - a special form of association that may exist between objects of same class
     - represents ownership relationship between two objects'
     - models a "has-a" relationship
+
+Aggregating object - the owner object
+
+Aggregating class - aggregating object's class
+
+Aggregated object - subject object
+
+Aggregated class - subject object's class
+
+Composition - aggregation between two objects if the existence of the aggregated object is dependent on the aggregating object
+
+    e.g.
+
+       Student has a name, composition (because name is aggregated obj dependent on the aggregating obj student)
+
+       Student has an address, aggregation (because address is aggregated obj that is NOT dependent on the aggregating obj student // basically the Address object can exist on its own)
+
+If aggregated obj dependent on aggregating obj --> COMPOSITION
+
+If aggregated obj is NOT dependent on aggregating obj --> AGGREGATION
 
     - the OWNER object is called an aggregating object and its class is called an aggregating class
     - the SUBJECT object is called an aggregated object, and its class is called an aggregated class
     - this is called composition if the existence of the aggregated object is dependent on the aggregating object
     - it implies one object exclusive ownership
+
     - a filled black diamond attached to aggregating class represents composition
 
     - an unfilled white diamond attached to aggregating class represents aggregation
-
 
     e.g.
     public class Person {
@@ -340,18 +438,25 @@ Aggregation
     private Person supervisor;
 
     }
+    // exemplifies a has-a relationship
 
-
-    }
 
 10.5: Case Study: Designing the Course Class
 
+Relevant code:
+TestCourse.java
+Course.java
+
 10.6: Case Study: Designing Class for Stacks
 
-Relevant code:
+stack - data structure that holds data in a last-in, first out fashion
+    ** or a first-in, last-out fashion
 
+Relevant code:
 TestStackOfIntegers.java
 StackOfIntegers.java
+
+Miscellaneous Notes:
 
 public keyword - declare's member's access as public
 
@@ -369,6 +474,7 @@ API - application programming interface (offering service to other software)
         - int to Integer
         - double to Double
         - char to Character
+
 Using these wrapper classes, you can process primitive data types as objects
     e.g. of Wrapper classes in java.lang package
     - Boolean
@@ -434,11 +540,19 @@ static parsing methods
 
 10.8: Automatic Conversion Between Primitive Types and Wrapper Class Types
 
-- converting a primitive value to a wrapper object is called boxing
-- the reverse process is called unboxing
+boxing - conversion of a primitive value to a wrapper object
+
+autoboxing - when the compiler automatically boxes a primitve value in a context requiring an object
+
+unboxing - conversion of a wrapper object to a primitive value
+
+autounboxing - when the compiler automatically unxboxes an object in a context requiring a primitive value
 
 e.g.:
     Integer intObject = new Integer(2); (is equal to)
+    ^classObj ^objRefVar            ^primitive value
+                ^wrapper object
+
     Integer intObject = 2;
 
     **this is due to autoboxing**
@@ -497,6 +611,7 @@ e.g.
 
 10.10.2 - Immutable Strings and Interned Strings
 
+- immutable object; contents cannot be changed
 - because strings are immutable, JVM uses unique instance of string literals to improve efficiency and save memory (interned string)
 - therefore, even if two string objects have same contents, they are not necessarily equal
 
@@ -556,6 +671,8 @@ e.g.
         ** Java.* is a regex which describes a string pattern that begins with Java followed by any zero of more characters
         or
 
+regex - regular expression that describes a pattern for matching, replacing, or splitting a string
+
         "440–02–4534".matches("\\d{3}–\\d{2}–\\d{4}")
 
         ** \\d represents a single digit, \\d{#} represents # digits
@@ -567,6 +684,8 @@ e.g.
             System.out.println(tokens[i]);
 
         ** this [.,:;?] specifies a pattern that matches any of the char inside the square brackets, and thus splits the string
+
+        result: Java C C# C++
 
 10.10.5 - Conversion between Strings and Arrays
 
@@ -627,7 +746,7 @@ e.g.
 
 10.11: The StringBuilder and StringBuffer Classes
 
-- these are mutable and can be used where a string is used
+- these are mutable and can be used where a string is used (THUS CAN BE CHANGED)
 - can add, insert, or append new contents into their objects
 
 - methods for modifying the buffer in StringBuffer are synchronized
@@ -715,6 +834,26 @@ e.g.
 
 Relevant code:
 PalindromeIgnoreNonAlphanumeric.java // gotta do this in the src
+
+Summary:
+
+1. Procedural paradigm focuses on designing methods. Object-oriented paradigm couples data and methods together in objects.
+    Object-oriented programming combines procedural paradigm with dimension of data in operations.
+
+2. Java offers way to wrap primitive data types into an object
+
+3. Java can automatically convert a primitive-type value to corresponding wrapper object & vice versa
+
+4. BigInteger class for computing & processing any size integers. BigDecimal to compute and process floating-point nums with precision
+
+5. String object is immutable.
+    interned string object - when the JVM stores two literal strings w/ same character sequence in a single object
+
+6. Regular expression (regex) is a string that describes a pattern for matching a set of strings (match, replace, split)
+
+7. StringBuilder and StringBuffer used to replace String class (b/c they are mutable)
+    ** use if the string contents will change
+    ** otherwise use String class
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 11) Inheritance and Polymorhpism
@@ -1170,8 +1309,11 @@ Chapter 12) Exception Handling and Text I/O
     - ArrayIndexOutOfBounds
     - InputMismatchException, etc.
 
+exception - an object that represents an error or a condition that prevents execution from proceeding normally
 
 12.2: Exception-handling Overview
+
+- exceptions are thrown from a method, and the caller of the method can catch and handle the exception
 
 - program method should never terminate the program, should be up to user
 - Java enables a method to throw an exception that be caught and handled by the caller
@@ -1180,6 +1322,7 @@ Chapter 12) Exception Handling and Text I/O
     public ...
         if (conditional)
             throw new EXCEPTION("output to caller") // exception is an object thrown (specified exeception is dataType in java API)
+            // this is the throw statment ^^
 
     public static void main(String [] args) {
 
@@ -1187,6 +1330,7 @@ Chapter 12) Exception Handling and Text I/O
 
         try {
             stmnts / methods...
+            // can have stmnt of method that throws exception here as well
         } catch (EXCEPTION catchBlockParameter) {   // catch-block header // catch-block param is usually ex
             code to process exception...
             // usually a print statement
@@ -1195,7 +1339,7 @@ Chapter 12) Exception Handling and Text I/O
         stmnts...
     }
 
-- the execution of a throw stmnt is called throwing an exception
+throwing an exception - the execution of a throw stmnt
     ** exception is an object created from an exception class
 - when an exception is thrown, normal execution is interrupted
 - "throw an exception" passes an exception from one place to another
@@ -1207,7 +1351,7 @@ Chapter 12) Exception Handling and Text I/O
 
 - the catch block is executed to handle the exception
 
-** advanage of using exception handling
+** advantage of using exception handling
     - it enables a method to throw an exception to its caller, enabling the caller to handle the exception
 
 - often, methods called do not know what to do in case of an error
@@ -1221,6 +1365,7 @@ Quotient.java
 QuotientWithIf.java
 QuotientWithMethod.java
 QuotientWithException.java
+InputMismatchExceptionDemo.java
 
 12.3: Exception Types
 
@@ -1232,28 +1377,26 @@ QuotientWithException.java
 
 - exception classes can be classified into 3 major types:
     1. System errors - thrown by JVM and are represented in the Error class
+        (UNCHECKED)
         ** Error class describes internal system errors
-    
+
     2. Exceptions - represented by Exception class, which describes errors caused by your program and by external circumstances
         ** these errors can be caught and handled by your program
 
     3. Runtime Exceptions - represented in RuntimeException class - which describes programming errors
+        (UNCHECKED)
+        runtime exceptions don't have to be declared as usual
+            ** runtime exceptions are unchecked exceptions (their subclasses too)
 
-** if its possible to rethrow an exception, it throws it to antoher method **
+** if its possible to rethrow an exception, it throws it to another method **
     e.g.
 
-    for example, if the exception is in method1 and another method, method2 calls it and it throws exception right after its param, and if said method2 is called in another method, the exception travels up the stack
+    for example, if the exception is in method1 and another method, method2 calls it and it throws exception right after its param in the method signature, and if said method2 is called in another method, the exception travels up the stack
         ** must have checked exceptions (the middle method(s) throws exception)
 
         **All other exceptions other than runtime and errors are checked exceptions, needing try and catch blocks
 
     stack diagram is a very good way to trace exception rethrows** also in main, the "throw exception" is optional
-
-    runtime exceptions don't have to be declared as usual
-        ** runtime exceptions are unchecked exceptions (their subclasses too)
-
-    errors are like runtime exceptions because they are unchecked (their subclasses too)
-
 
 12.4: More on Exception Handling
 
@@ -1269,6 +1412,8 @@ QuotientWithException.java
 - program that detects an error which creates an instance of the appropriate exception type
 
 12.4.3 - Catching Exceptions
+
+- catch stmnt and params comes directly after try block
 
 12.4.4 - Getting Information from Exceptions
 
@@ -1304,16 +1449,52 @@ TestCircleWithException.java
 
 12.5: The finally Clause
 
+- executed regardless if exception occurred or not
+    ** if no exceptions are arised, finally stmnts are executed and next stmnt after try stmnt is executed
+    ** if stmnt causes an exception in try block that is caught in the catch block, rest of try is skipped and catch is exected and the finally is then executed as well
+    ** if one stmnt causes an exception that is not caught in catch block(s), the other try stmnts are skipped and finally is executed
+
+    ** finally block executes even if return statement prior to reaching the finally block
+
+- should come after try/catch block which catch checked exceptions
+
 12.6: When to Use Exceptions
+
+- a method should throw an exception if the error needs to be handled by its caller
 
 12.7: Rethrowing Exceptions
 
+- occurs when the handler cannot process the exception, or wants to let it's caller be notified of the exception
+
+    e.g.
+
+    try {
+        stmnts...
+    } catch (Exception ex) {
+        stmnts...
+        throw ex;
+    }
+    // in this code snippet, throw ex rethrows exception to caller so other handlers in  caller can process the exception
+
 12.8: Chained Exceptions
+
+chained exception - throwing an exception along with another exception
+
+- when in the try block of the exception handling there is another method that throws an exception, and then there is the catch block to catch another exception as well
 
 Relevant code:
 ChainedExceptionDemo.java
 
 12.9: Defining Custom Exception Classes
+
+- You can define a custom exception class by extending the Exception class
+
+    Syntax:
+
+    public class ClassName extends Exception {
+                    ^ This is the Exception you create, can be any name
+    }
+
 
 Relevant code:
 InvalidRadiusException.java
@@ -1321,35 +1502,160 @@ TestCircleWithCustomException.java
 
 12.10: The File Class
 
+- file class obtains file/directory properties, deletes and renames files/directories, and creates directories
+
+Absolute file name (full name) - file name with complete path and drive letter
+
+directory path - everything from absolute file name except the file name itself
+
+Relative file name - the file name without the path
+
+- file class does NOT contain methods for reading and writing file contents
+
     Method(s):
 
+    +File(pathname: String)
+    +File(parent: String, child: String)
+    +File(parent: File, child: String)
+    +exists(): boolean
+    +canRead(): boolean
+    +canWrite(): boolean
+    +isDirectory(): boolean
+    +isFile(): boolean
+    +isAbsolute(): boolean
+    +isHidden(): boolean
+    +getAbsolutePath(): String
+    +getCanonicalPath(): String
+    +getName(): String
+    +getPath(): String
+    +getParent(): String
+    +lastModied(): long
+    +length(): long
+    +listFile(): File[]
+    +delete(): boolean
+    +renameTo(dest: File): boolean
+    +mkdir(): boolean
+    +mkdirs(): boolean
+
+** directory separator in Windows is a "\", but in a string literal it should be written as "\\"
+
+** never use absolute file names in program
+    ** this is because the code may not work in other Operating Systems (e.g. Linux, OS, etc)
+
+** forward slashes work on all platforms
+
+    e.g.
+
+    new File("image/us.gif");
 
 Relevant code:
 TestFileClass.java
 
 12.11: File Input and Output
 
+- use the Scanner class for reading text data from a file
+- use PrintWriter class for writing text data to a file
+
+- File object encapsulates the properties of a file/path but does not contain the methods to write/read data to/from a file
+
 12.11.1 - Writing Data Using PrintWriter
 
+    Syntax:
+
+    PrintWriter output = new PrintWriter(filename);
+
     Method(s):
+
+    +PrintWriter(lename: String)
+    +print(s: String): void
+    +PrintWriter(le: File)
+    +print(c: char): void
+    +print(cArray: char[]): void
+    +print(i: int): void
+    +print(l: long): void
+    +print(f: f loat): void
+    +print(d: double): void
+    +print(b: boolean): void
+
+    Also contains the overloaded
+    println methods.
+
+    Also contains the overloaded
+    printf methods.
+
+- must use close() method to close the PrintWriter object
+    ** or else you risk the data not being saved properly in the file
 
 Relevant code:
 WriteData.java
 
 12.11.2 - Closing Resources Automatically Using try-with-resources
 
+- Since programmers often forget to close the file, the JDk (java development kit) provides new try-with resources syntax that auto closes files
+
+    Syntax:
+
+    try (declare and create resources) {
+        rerources to process the file...
+    }
+
 Relevant code:
 WriteDataWithAutoClose.java
 
 12.11.3 - Reading Data Using Scanner
 
+- Scanner used to read strings and primitive values from console
+
+- it can also read input from file from console
+    ** it breaks input into tokens delimited by whitespace
+
+    Syntax:
+
+    Scanner scanner = new Scanner(System.in);
+    // this is for primitive input from console
+
+    Scanner scanner = new Scanner(new File(filename));
+
+    or
+
+    File file = new File(path);
+    Scanner scanner = new Scanner(file);
+
     Method(s):
 
+    +Scanner(source: File)
+    +Scanner(source: String)
+    +close()
+    +hasNext(): boolean
+    +next(): String
+    +nextLine(): String
+    +nextByte(): byte
+    +nextShort(): short
+    +nextInt(): int
+    +nextLong(): long
+    +nextFloat(): float
+    +nextDouble(): double
+    +useDelimiter(pattern: String):
+    Scanner
 
 Relevant code:
 ReadData.java
 
 12.11.4 - How Does Scanner Work?
+
+- has token based / line based input
+
+    token based - nextInt(), next(), nextDouble(), etc.
+
+    ** by default, the delimiters are whitespace, to overcome this do:
+
+    useDelimiter(String regex)  // used to set up a new pattern for delimiters
+
+    line-based - reads line ending with line separator
+
+    ** Windows OS and Linux OS differ b/c their line separators are different, to overcome this do:
+
+    String lineSeparator = System.getProperty("line.separator");
 
 12.11.5 - Case Study: Replacing Text
 
@@ -1357,6 +1663,31 @@ Relevant code:
 ReplaceText.java
 
 12.12: Reading Data from the Web
+
+- you can read data from a file on the web
+
+URL - uniform resourse locator -- the unique address for a file on the web
+
+    e.g.
+
+    www.google.com/index.html
+    ^^ the URL for the file index.html located on the Google web server
+
+- for application program to read data from URL, first create URL object using java.net.URL class
+
+    Syntax:
+
+    public URL(String spec) throws MalformedURLException
+
+    e.g.
+
+    try {
+        URL url = new URL("http://www.google.com/index.html");
+    } catch (MalformedURLExceptiuon ex) {
+        ex.printStackTrace();
+    }
+
+MalformedURLException - thrown if the URL string has a syntax error
 
 Relevant code:
 readFileFromURL.java
@@ -1368,8 +1699,7 @@ WebCrawler.java
 
 
 Relevant code:
-
-12.5 - InputMismatchExceptionDemo.java
+InputMismatchExceptionDemo.java
 
 // must do ch12 reading n stuff 10/28 ** ASSIGNMENTS DUE 11/2 and 11/4 DO ASAP
 

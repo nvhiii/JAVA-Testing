@@ -1714,4 +1714,21 @@ InputMismatchExceptionDemo.java
 PHONEBOOK2 USES COMPOSITION **
 
 What is the object oriented way to create an equals method to compare two objects
+
+Chapter 13) Abstract Classes and Interfaces
+
+Interface 11/17
+
+// take notes based off the textbook **
+    Syntax:
+    public interface Animal {
+        public abstract void eat();
+        public abstract void move();
+        public abstract void "";
+    }
+
+    1. a class can inherit from as many interfaces as it wants
+    2. a class implements an interface
+    3. of course
+    4.
  */

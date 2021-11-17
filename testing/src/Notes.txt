@@ -974,6 +974,8 @@ TestCircleRectangle.java
 
     super.method(args);
 
+    // for a getter method, you can only find objects actual type, and not its parents classs
+
 - You could chain super constructors if the parent has a parent.
     ** everything that belongs to the parent, the parent should print it,
     or get the methods from the parent class instead of doing the operations from a child class, child class should only be reponsible for its own behavior, like providing the toString method.
@@ -1116,6 +1118,7 @@ There are 3 Pillars of OOP (Object Oriented Programming)
     ** You can create another method in the superclass to resolve issue of subclass method not running with object of super type as param
 
 abstract method - method w/ no code, just for type usage, superclass method that is to be overridden by subclass methods
+    ** this initializes fields of constructors of subclasses
 
     Syntax:
 

@@ -2004,6 +2004,13 @@ marker interface - an interface with an empty body
 
 - class which implements Cloneable interface is marked cloneable, and its objects can be cloned using the clone() method defined in the Object class
 
+header for clone method in the Object class:
+
+    Syntax:
+    protected native Object clone() throws CloneNotSupportedException;
+
+native keyword - indicates that this method is not written in Java but it implemented in the JVM
+
 Relevant code:
 House.java
 
@@ -2011,7 +2018,15 @@ House.java
 
 - a class can implement multiple interfaces, but it can only extend one superclass
 
+13.9: Case Study: The Rational Class
 
+Relevant code:
+Rational.java
+TestRationaClass.java
+
+13.10: Class-Design Guidelines
+
+- used to design sound classes
 
 
 Will figure out where to put these notes later:
@@ -2019,6 +2034,7 @@ Will figure out where to put these notes later:
 Keywords:
     - implements
     - instanceof
+    - native
     - abstract
     - extends
     - super

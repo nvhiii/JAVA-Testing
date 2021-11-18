@@ -901,6 +901,10 @@ Key Takeaways Regarding Inheritance:
 
 11.3: Using the super Keyword
 
+- when used in a constructor of a subclass, super reference must be the first statement
+
+- the superclass' constructor called by default before the constructor is invoked
+
 - super refers to the superclass (parent) & invokes superclasses methods and constructors
 
 - subclass inherits accessible data fields and methods
@@ -1116,42 +1120,6 @@ There are 3 Pillars of OOP (Object Oriented Programming)
         }
 
     ** You can create another method in the superclass to resolve issue of subclass method not running with object of super type as param
-
-abstract method - method w/ no code, just for type usage, superclass method that is to be overridden by subclass methods
-    ** this initializes fields of constructors of subclasses
-
-    Syntax:
-
-    public abstract returnType methodName();
-
-        ** for the children, add @Override before every abstract method inherited by subclasses
-
-    ** as soon as you have single abstract method in a class, the class needs to be declared abstract
-
-    Syntax:
-
-    public abstract class className {
-        ... add data fields and methods here
-    }
-
-    abstract class - should only have abstract class so children can inherit methods
-        - the children inherit all methods, so they can call methods
-
-        - the compiler sticks in super via the children/subclasses
-
-        - NOTHING happens to the constructors, instantiation just can't be done normally through the abstract class
-            ** to create object of abstract class, use polymorphism where subclass type is an object super type
-
-        - can still have regular methods
-
-        - you can use this in a collection of data (array, etc.)
-
-        - in the subclass constructors, you should use super with the params from the args to instantiate
-
-
-    concrete class - can instantiate objects (no special syntax)
-
-
 
 Relevant code:
 PolymorphismDemo.java // review this code
@@ -1704,28 +1672,112 @@ WebCrawler.java
 Relevant code:
 InputMismatchExceptionDemo.java
 
-// must do ch12 reading n stuff 10/28 ** ASSIGNMENTS DUE 11/2 and 11/4 DO ASAP
-
-    
-
-// **add chapter 13 here
-
-
-PHONEBOOK2 USES COMPOSITION **
-
-What is the object oriented way to create an equals method to compare two objects
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 13) Abstract Classes and Interfaces
 
-Interface 11/17
+13.1: Introduction
 
-// take notes based off the textbook **
+- like a superclass defines common behavior for related subclasses, an interface is used to define common behavior for classes
+
+interface - used to define common behavior for classes (unrelated classes as well)
+
+13.2: Abstract Classes
+
+- abstract class cannot be used to create objects
+    ** however they can contain abstract methods that can be called by concrete subclasses
+
+abstract method - method w/ no code, just for type usage, superclass method that is to be overridden by subclass methods
+    ** this initializes fields of constructors of subclasses
+
+    Syntax:
+
+    public abstract returnType methodName();
+
+        ** for the children, add @Override before every abstract method inherited by subclasses
+
+    ** as soon as you have single abstract method in a class, the class needs to be declared abstract
+
+    Syntax:
+
+    public abstract class className {
+        ... add data fields and methods here
+    }
+
+    abstract class - should only have abstract class so children can inherit methods
+        - the children inherit all methods, so they can call methods
+
+        - the compiler sticks in super via the children/subclasses
+
+        - NOTHING happens to the constructors, instantiation just can't be done normally through the abstract class
+            ** to create object of abstract class, use polymorphism where subclass type is an object super type
+
+        - can still have regular methods
+
+        - you can use this in a collection of data (array, etc.)
+
+        - in the subclass constructors, you should use super with the params from the args to instantiate
+
+
+    concrete class - can instantiate objects (no special syntax)
+
+Relevant code:
+GeometricObject.java
+Circle.java
+Rectangle.java
+
+13.2.1 - Why Abstract Methods?
+
+** Using polymorphism, we can have two subclass objects of a superclass and utilize abstract methods in order to override the parents abstract class
+
+Relevant code:
+TestGeometricObject.java
+
+13.2.2 - Interesting Points about Abstract Classes
+
+- all abstract methods in abstract superclass must be implemented in its subclasses or else the subclass has to be declared abstract
+    ** abstract methods are nonstatic
+
+- an abstract clas cannot be instantiated, but it can still have constructors
+    ** these constructors can only be called by subclass using super(params) as the first statement in the subclass constructor
+
+- class containing abstract methods has to be abstract
+    ** some abstract classes can be created with no abstract methods // this is used as a base class for defining subclasses
+
+- subclass can override a method from superclass to define it as abstract. (unusual practice)
+
+- subclass can be abstract even if its superclass is concrete
+
+- cannot creaete instance of abstract class using new operator, but an abstract class can be used as a data type
+
+13.3: Case Study: the Abstract Number Class
+
+Relevant code:
+LargestNumber.java
+
+13.4: Case Study: Calendar and GregorianCalendar
+
+Relevant code:
+TestCalendar.java
+
+13.5: Interfaces
+
+interface - a class-like construct for defining common operations for objects
+
     Syntax:
     public interface Animal {
         public abstract void eat();
         public abstract void move();
         public abstract void "";
     }
+
+- interface is like a special class in java
+    ** each one is compiled into separate bytecode file, like regular class
+    ** Can use interface same way as abstract class
+
+** Default keyword
+
+Relevant code:
+TestEdible.java
 
     1. a class can inherit from as many interfaces as it wants
     2. a class implements an interface

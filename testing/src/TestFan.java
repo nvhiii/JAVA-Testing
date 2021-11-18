@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TestFan {
@@ -29,14 +28,13 @@ public class TestFan {
             for (int j = i+1; j<fanArray.length; j++) { // this is in comparison to line 27, it is the pointing to the 'next' location in the array
 
                 if (fanArray[i].equals(fanArray[j])) {  // using .equals operator to compare strings, which in this case is 2 instances of same class
-                    System.out.println(fanArray[i].toString());
+                    fanArray[i].toString();
 
                 }
             }
 
         }
 
-        System.out.println(Arrays.toString(fanArray));
     }
 
     public static void shouldTurnOn(Fan f) {

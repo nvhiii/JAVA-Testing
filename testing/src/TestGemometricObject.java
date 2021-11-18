@@ -1,4 +1,5 @@
 public class TestGemometricObject {
+    /*
 
     public static void main(String[] args) {
 
@@ -23,4 +24,6 @@ public class TestGemometricObject {
         System.out.println("The are is " + object.getArea());
         System.out.println("The perimeter is " + object.getPerimeter());
     }
+
+     */
 }

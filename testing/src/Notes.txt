@@ -1180,6 +1180,7 @@ DynamicBindingDemo.java
 
 Q: Why doesn't Student b = o not work?
     A: b/c Student object is instance of Object, but Object is not instance of Student
+        ** it is a good practice to ensure the object is an instance of another object (superclass obj is instance of subclass basically)
 
     To solve this issue that the compiler cannot figure out do:
 
@@ -1193,24 +1194,23 @@ Q: Why doesn't Student b = o not work?
     ** use instanceof operator to downcast
     e.g.
 
-    void someMethod(Object myObject) {
+    void someMethod(Object myObject) {  // assume object is superclass type
 
-        if (myObject instanceof Circle) {
-            System.out.println("The circle diameter is" + ((Circle)myObject).getDiameter());
+        if (myObject instanceof Circle) {   // use instanceof operator to check if superclass type is of subclass type
+            System.out.println("The circle diameter is" + ((Circle)myObject).getDiameter());    // use downcasting on superclass type in order to call method from subclass on superclass obj
 
         }
     }
+
     /**
     So this method is checking if superclass object myObject is an instance of subclass type Circle
     Then downcasts in the println stmnt using the proper notation
     */
 
     ** or you can use getClass method to downcast
-    e.g.
+    (Sokol knows how to do this)
 
-        if (myObject.getClass().getName().equals(Circle)) {
-
-        }
+    ** Using downcasting does not create a new object
 
 11.10: The Object's equals Method
 
@@ -1218,55 +1218,216 @@ Q: Why doesn't Student b = o not work?
 
     syntax:
 
-    object1.equals(object2);
+    public boolean equals(other o)
+    ^ signature in Object class
 
     object1.equals(object2);
+
+    default implementation of equals method in Object class:
 
     public boolean equals(Object obj) {
         return this == obj;
     }
 
-    /**
-    This checks two reference variables point to the same object using == operator
-    */
+    // This checks two reference variables point to the same object using == operator
+    // The == operator is used to compare two primitive data-ty[es pr to determine whether two objects have same references
+    // the equals method is to test if two objects have the same contents, given that the method is overridden
+
+    // the == operator is stronger than the equals method because the == operator checks if two reference variables refer to the same obj
+
+The equals method is usually overridden and can be done so by this format:
+
+    Syntax:
+
+    @Override
+    public boolean equals(Object superclassVar) {
+        if (superclassVar instanceof subclassVar) {
+            return instanceVar == ((subclassVar)superclassVar).radius;
+        } else {
+            return false;
+        }
+    }
+
+    **Using a signature like equals(SomeClassName obj) is incorrect use equals(Object obj)
 
 11.11: The ArrayList Class
 
 - ArrayList object can be used to store a list of objects
 
+- Once the array is created, its size is fixed
+
     Method(s):
 
     +ArrayList()
-    +add(e: E): void
-    +add(index: int, e: E): void
-    +clear(): void
-    +contains(o: Object): boolean
-    +get(index: int): E
-    +indexOf(o: Object): int
-    +isEmpty(): boolean
-    +lastIndexOf(o: Object): int
-    +remove(o: Object): boolean
-    +size(): int
-    +remove(index: int): E
-    +set(index: int, e: E): E
+    +add(e: E): void                   // Appends a new element e at the end of this list.
+
+    +add(index: int, e: E): void       // Adds a new element e at the specified index in this list.
+
+    +clear(): void                     // Removes all elements from this list
+
+    +contains(o: Object): boolean      // Returns true if this list contains the element o.
+
+    +get(index: int): E                // Returns the element from this list at the specified index.
+
+    +indexOf(o: Object): int           // Returns the index of the firrst matching element in this list.
+
+    +isEmpty(): boolean                // Returns true if this list contains no elements.
+
+    +lastIndexOf(o: Object): int       // Returns the index of the last matching element in this list.
+
+    +remove(o: Object): boolean        // Removes the first element CDT from this list. Returns true
+                                          if an element is removed.
+
+    +size(): int                       // Returns the number of elements in this list.
+
+    +remove(index: int): E             // Removes the element at the specied index. Returns
+                                          the removed element.
+
+    +set(index: int, e: E): E          // Sets the element at the specified index.
+
+
 
 - Arraylist is a generic class with generic type E
-    ** Specify concrete type to replace E
+    ** Specify concrete type to replace E (concrete type refers to a class which can have an obj instantiated)
 
     e.g.
 
-    ArrayList<String> cities = new ArrayList<String>();
+    before JDK 7:
 
-        ^^ here, E is replaced with the var cities
+    ArrayList<String> cities = new ArrayList<String>();
+    concrete type^      ^ here, cities is of concrete type String which replaces E
+
+    after JDK 7:
+
+    ArrayList<String> cities = new ArrayList<>();
+
+Differences and similarities between Arrays and ArrayList
+
+Creation:
+String[] a = new String[size];
+
+ArrayList<String> list = new ArrayList<>();
+
+** the top under each section is Array and bottom is Arraylist, unless the operation is said to be exclusive to ArrayList)
+
+Accessing:
+a[index]
+
+list.get(index);
+
+Updating:
+a[index] = "London";
+
+list.set(index, "London");
+
+Returning size:
+a.length
+
+list.size();
+
+
+Adding a new element (exclusive to ArrayList):
+list.add("London");
+
+Inserting new element (exclusive to ArrayList):
+list.add(index, "London");
+
+Removing an element (exclusive to ArrayList):
+list.remove(index);
+
+list.remove(Object);
+
+Removing all elements (exclusive to ArrayList):
+list.clear();
+
+More things to know:
+- Array is static in size, ArrayList is dynamic in size
+    ** however you can use a scanner to read a variety of array sizes, but they will be static still
+
+- Array is fixed length, Arraylist is variable length
+
+- Arrays must have size initialized, ArrayList can be created without specifying its size
+
+- Arrays are much faster in comparison to ArrayList b/c Arrays are of fixed size and the ArrayList has the resize operation in it
+
+- Arrays store objects and primitive types, ArrayList can only hold object types (primitive types get converted into object types)
+
+- Arrays can be iterated using for-loop or for-each loop, ArrayList uses an iterator
+
+- Arrays are not type-safe, ArrayList is type-safe
+
+- Arrays uses length variable to denote length, ArrayList uses size() method to determine size
+
+- Arrays can add elements in using assignment operator, ArrayList uses add() method
+
+- Arrays can be multi-dimensional, ArrayLists are always one dimensional
+
+Relevant code:
+TestArrayList.java
+DistinctNumbers.java
 
 11.12: Useful Methods for Lists
 
+- Java provides methods for creating list from array, sorting a list, and finding max and min element in list, and shuffling a list
+
+    Method Syntax:
+
+    String[] array = {"red", "green", "blue"};
+    ArrayList<String> list = new ArrayList<>(Arrays.asList(array)); // turns Array to ArrayList
+
+    String[] array1 = new Stringp[list.size()]
+    list.toArray(array1);   // turns ArrayList into Array
+
+    Integer[] array = {3, 5, 95, 4, 15, 34, 3, 5, 6};
+    ArrayList<Integer> list = new ArrayList<>(Arrays.asList(array));
+    java.util.Collections.sort(list);
+    System.out.println(list);  // this sorts the Array into an ArrayList of integers that is sorted, from smallest to largest
+
+    ** You can also use the static max and min in the java.util.Collections class to return max and min elements of the list
+    e.g.
+    System.out.println(java.util.Collections.max(list));
+
+    or
+
+    System.out.println(java.util.Collections.min(list));
+
+    ** You can also use the static shuffle in the java.util.Collections to perform a random shuffle of elements in the list
+    e.g.
+
+    java.util.Collections.shuffle(list);
+    System.out.println(list);
+
+
 11.13: Case Study: A Custom Stack Class
+
+Relevant code:
+MyStack.java
 
 11.14: The protected Data and Methods
 
+- a protected member of a class can be accessed from a subclass
+
+- you can allow subclasses to access data fields or methods defined in the superclass but not nonsubclasses in different packages
+
+Visibility from least visible to most visible:
+1. private
+2. default (no modifier)
+3. protected
+4. public
+
+Modifiers:
+    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World (different pacakge access))
+    - protected (can access: class, package, subclass (same pkg), subclass (diff pkg))
+    - no modifier (can access: class, package, subclass (same pkg))
+    - private (can access: class)
+
 11.15: Preventing Extending and Overriding
 
+- final classes and final methods cannot be extended
+
+- final data field is constant
+
+    ** final keyword can also be used on local variables, making it a constant inside a method
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 12) Exception Handling and Text I/O
@@ -1779,12 +1940,6 @@ Relevant code:
 TestEdible.java
 
 Will figure out where to put these notes later:
-
-Modifiers:
-    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World)
-    - protected (can access: class, package, subclass (same pkg), subclass (diff pkg))
-    - no modifier (can access: class, package, subclass (same pkg))
-    - private (can access: class)
 
 Keywords:
     - implements

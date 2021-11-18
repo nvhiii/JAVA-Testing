@@ -1,4 +1,5 @@
 public class TestEdible {
+    /*
 
     public static void main(String[] args) {
 
@@ -53,4 +54,6 @@ class Orange extends Fruit {
     public String howToEat() {
         return "Orange: Make orange juice";
     }
+
+     */
 }

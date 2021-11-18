@@ -1409,16 +1409,25 @@ MyStack.java
 
 - you can allow subclasses to access data fields or methods defined in the superclass but not nonsubclasses in different packages
 
-
+Visibility from least visible to most visible:
+1. private
+2. default (no modifier)
+3. protected
+4. public
 
 Modifiers:
-    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World)
+    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World (different package access))
     - protected (can access: class, package, subclass (same pkg), subclass (diff pkg))
     - no modifier (can access: class, package, subclass (same pkg))
     - private (can access: class)
 
 11.15: Preventing Extending and Overriding
 
+- final classes and final methods cannot be extended
+
+- final data field is constant
+
+    ** final keyword can also be used on local variables, making it a constant inside a method
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 12) Exception Handling and Text I/O
@@ -1879,7 +1888,7 @@ Rectangle.java
 
 13.2.1 - Why Abstract Methods?
 
-** Using polymorphism, we can have two subclass objects of a superclass and utilize abstract methods in order to override the parents abstract class
+** Using polymorphism, we can have two different subclass objects of a superclass and utilize abstract methods in order to override the parents abstract method(s)
 
 Relevant code:
 TestGeometricObject.java
@@ -1889,7 +1898,7 @@ TestGeometricObject.java
 - all abstract methods in abstract superclass must be implemented in its subclasses or else the subclass has to be declared abstract
     ** abstract methods are nonstatic
 
-- an abstract clas cannot be instantiated, but it can still have constructors
+- an abstract class cannot be instantiated, but it can still have constructors
     ** these constructors can only be called by subclass using super(params) as the first statement in the subclass constructor
 
 - class containing abstract methods has to be abstract

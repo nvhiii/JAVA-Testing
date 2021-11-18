@@ -1240,7 +1240,7 @@ The equals method is usually overridden and can be done so by this format:
     Syntax:
 
     @Override
-    public boolean equals(Object superclassVar) {
+    public boolean equals(Object superclassVar) {       // Using a signature like equals(SomeClassName obj) is incorrect use equals(Object obj)
         if (superclassVar instanceof subclassVar) {
             return instanceVar == ((subclassVar)superclassVar).radius;
         } else {
@@ -1248,7 +1248,6 @@ The equals method is usually overridden and can be done so by this format:
         }
     }
 
-    **Using a signature like equals(SomeClassName obj) is incorrect use equals(Object obj)
 
 11.11: The ArrayList Class
 
@@ -1416,7 +1415,7 @@ Visibility from least visible to most visible:
 4. public
 
 Modifiers:
-    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World (different pacakge access))
+    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World (different package access))
     - protected (can access: class, package, subclass (same pkg), subclass (diff pkg))
     - no modifier (can access: class, package, subclass (same pkg))
     - private (can access: class)
@@ -1888,7 +1887,7 @@ Rectangle.java
 
 13.2.1 - Why Abstract Methods?
 
-** Using polymorphism, we can have two subclass objects of a superclass and utilize abstract methods in order to override the parents abstract class
+** Using polymorphism, we can have two different subclass objects of a superclass and utilize abstract methods in order to override the parents abstract method(s)
 
 Relevant code:
 TestGeometricObject.java
@@ -1898,7 +1897,7 @@ TestGeometricObject.java
 - all abstract methods in abstract superclass must be implemented in its subclasses or else the subclass has to be declared abstract
     ** abstract methods are nonstatic
 
-- an abstract clas cannot be instantiated, but it can still have constructors
+- an abstract class cannot be instantiated, but it can still have constructors
     ** these constructors can only be called by subclass using super(params) as the first statement in the subclass constructor
 
 - class containing abstract methods has to be abstract
@@ -1925,19 +1924,95 @@ TestCalendar.java
 interface - a class-like construct for defining common operations for objects
 
     Syntax:
-    public interface Animal {
-        public abstract void eat();
-        public abstract void move();
-        public abstract void "";
+    modifier interface InterfaceName {
+        // constant declarations
+        // abstract method signatures
     }
 
 - interface is like a special class in java
     ** each one is compiled into separate bytecode file, like regular class
     ** Can use interface same way as abstract class
+        - can use interface as data type for a ref var as a result of casting
 
+    ** the modifiers in an interface can be omitted
+
+- an interface can be implemented through keyword implements
+
+    e.g.
+    class Chicken extends Animal implements Edible {    // Edible is the interface
+
+Interface methods using the keyword default
+
+- provides a default implementation for method in interface
+- class that used interface can use default implementation or override the method w/ new implementation
+
+- allows a adding of a new method in an interface w/ default implementation w/o rewriting code for classes that implement the interface
+
+    Syntax:
+
+    public interface A {
+
+        public default void doSomething() {
+            System.out.println("Do something");
+        }
+
+        public static int getAValue() {
+            return 0;
+        }
+    }
 
 Relevant code:
 TestEdible.java
+
+13.6: The Comparable Interface
+
+- defines the compareTo method for comparing objects
+
+- to find out if two objects are comparable, Java provides the Comparable interface
+
+    Syntax:
+
+    package java.lang;
+
+    public interface Comparable<E> {
+        public int compareTo(E o);
+    }
+
+- this method determines the order of this object with specified object o and returns a negative int, 0, or a positive int if the object is less than, equal to, or greater than o
+
+- is a generic interface of type E which is replaced by concrete type when implementing this interface
+
+Relevant code:
+SortComparableObjects.java
+ComparableRectangle.java
+SortRectangles.java
+
+13.7: The Cloneable Interface
+
+- an interface which specifies if an object can be cloned
+
+    Syntax:
+
+    package java.lang;
+
+    public interface Cloneable {
+    }
+    // this interface is empty
+
+marker interface - an interface with an empty body
+    ** Used to denote that a class possessed certain properties
+
+- class which implements Cloneable interface is marked cloneable, and its objects can be cloned using the clone() method defined in the Object class
+
+Relevant code:
+House.java
+
+13.8: Interfaces vs. Abstract Classes
+
+- a class can implement multiple interfaces, but it can only extend one superclass
+
+
+
 
 Will figure out where to put these notes later:
 

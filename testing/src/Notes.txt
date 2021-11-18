@@ -1774,13 +1774,24 @@ interface - a class-like construct for defining common operations for objects
     ** each one is compiled into separate bytecode file, like regular class
     ** Can use interface same way as abstract class
 
-** Default keyword
 
 Relevant code:
 TestEdible.java
 
-    1. a class can inherit from as many interfaces as it wants
-    2. a class implements an interface
-    3. of course
-    4.
+Will figure out where to put these notes later:
+
+Modifiers:
+    - public (can access: class, package, subclass (same pkg), subclass (diff pkg), World)
+    - protected (can access: class, package, subclass (same pkg), subclass (diff pkg))
+    - no modifier (can access: class, package, subclass (same pkg))
+    - private (can access: class)
+
+Keywords:
+    - implements
+    - instanceof
+    - abstract
+    - extends
+    - super
+    - this
+    - more to be added...
  */

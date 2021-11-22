@@ -38,7 +38,7 @@ public class Fan {
     // toString method is above
 
     public boolean equals(Fan other) {
-        return other.speed == speed && other.on == on && other.radius == radius && other.color.equals(color);
+        return speed == other.speed && on == other.on && radius == other.radius && color.equals(other.color);
     }
 
     // equals method is above

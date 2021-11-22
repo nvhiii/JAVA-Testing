@@ -1401,6 +1401,10 @@ InputMismatchExceptionDemo.java
 
     stack diagram is a very good way to trace exception rethrows** also in main, the "throw exception" is optional
 
+Reference:
+
+execptionHierarchy.PNG (this is in the same dir as this txt file)
+
 12.4: More on Exception Handling
 
 - A handler for exception is found through chain of reverse method calls, starting from current method

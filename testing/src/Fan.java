@@ -25,7 +25,7 @@ public class Fan {
         this.speed = speed;
         this.on = onOrOff;
         this.radius = radius;
-        this.color = color;
+        this.color = color;     // this-keyword only used when param is same name as instance var
 
     }
 
@@ -37,8 +37,8 @@ public class Fan {
 
     // toString method is above
 
-    boolean equals(Fan f1, Fan f2) {
-        return f1.equals(f2);
+    public boolean equals(Fan other) {
+        return speed == other.speed && on == other.on && radius == other.radius && color.equals(other.color);
     }
 
     // equals method is above
@@ -79,23 +79,19 @@ public class Fan {
 
     // the four methods above are the setters
 
-    public void shouldTurnOn() {
+    public static Fan read(Scanner sc) {
 
-        Fan f = new Fan();
-        String keyboardInput;
-
-        Scanner stdin = new Scanner(System.in);
-        System.out.println("Should the fan be turned on? (y/n)");
-
-        keyboardInput = stdin.next();
-
-        if (keyboardInput.equals("y")) {
-            f.setOn(true);
-            System.out.println("Fan has been turned on successfully");
-        } else if (keyboardInput.equals("n")) {
-            f.setOn(false);
-            System.out.println("Fan has not been turned on");
+        if (!sc.hasNext()) {
+            return null;
         }
+        double radius = sc.nextDouble();
+        String color = sc.next();
+        return new Fan(SLOW, false, radius, color);
 
+        // to call this in the main method just do:
+
+        //    fansArray[i] = Fan.read(scanner);
     }
+
+
 }

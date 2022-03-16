@@ -123,6 +123,45 @@ Chapter 1) Introduction to Computers, Programs, and JAVA
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Chapter 2) Elementary Programming
+
+2.1: Introduction
+
+2.2: Writing a Simple Program
+
+2.3: Reading Input from the COnsole
+
+2.4: Identifiers
+
+2.5: Variables
+
+2.6: Assingment Statments and Assignment Expressions
+
+2.7: Named Constants
+
+2.8: Naming COnventions
+
+2.9: Numeric Data Types and Operations
+
+2.10: Numeric Literals
+
+2.11: Evaluating Expression and Operator Precedence
+
+2.12: Case Study: Displaying the current Time
+
+2.13: Augmented Assignment Operators
+
+2.14: Increment and Decrement Operators
+
+2.15: Numeric Type COnversions
+
+2.16: Software Development Process
+
+2.17: Case Study: Counting Monetary Units
+
+2.18: Common Errors and Pitfallss
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Chapter 9) Objects and Classes
 
 9.1: Introduction

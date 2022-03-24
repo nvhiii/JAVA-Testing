@@ -12,5 +12,7 @@ public class TestForEach {
         collection.add("Madison");
 
         collection.forEach(e -> System.out.print(e.toUpperCase() + " "));   // basically here the e is representing the collection of strings, and prints them into uppercase format
+
+        // ^ the usage of the "->" is the same as using an anonymous inner class
     }
 }
